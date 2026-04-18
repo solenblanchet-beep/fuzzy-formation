@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<title>CGV / CGU — Fuzzy Formation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--lime:#D8FF7C;--blanc:#FFFFFF;--fond:#F6F5F1;--vert-titre:#0A3E27;--violet:#CC88FF;--gris:#555;--radius:12px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--fond);color:var(--vert-titre);font-family:'EB Garamond',serif;font-size:16px;line-height:1.7;}
+  nav{position:sticky;top:0;z-index:100;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+  .logo{font-family:'Quicksand',sans-serif;font-weight:700;font-size:1.5rem;color:var(--blanc);text-decoration:none;letter-spacing:0.08em;}
+  .nav-back{color:var(--vert-titre);text-decoration:none;font-size:0.88rem;font-weight:600;opacity:0.65;transition:opacity 0.2s;}
+  .nav-back:hover{opacity:1;}
+  .page-wrap{max-width:760px;margin:0 auto;padding:60px 40px 100px;}
+  .page-title{font-family:'Quicksand',sans-serif;font-weight:900;font-size:2.2rem;color:var(--vert-titre);margin-bottom:8px;}
+  .page-update{font-size:0.82rem;color:#888;margin-bottom:48px;}
+  .legal-block{background:var(--blanc);border-radius:var(--radius);padding:36px 32px;margin-bottom:16px;border:1px solid rgba(0,0,0,0.05);}
+  .legal-block h2{font-family:'Quicksand',sans-serif;font-weight:800;font-size:1rem;color:var(--vert-titre);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--lime);}
+  .legal-block p{font-size:0.92rem;color:var(--gris);line-height:1.8;margin-bottom:10px;}
+  .legal-block p:last-child{margin-bottom:0;}
+  .legal-block ul{margin:10px 0 10px 20px;display:flex;flex-direction:column;gap:6px;}
+  .legal-block ul li{font-size:0.92rem;color:var(--gris);line-height:1.7;}
+  .legal-block a{color:var(--violet);text-decoration:none;}
+  .legal-block a:hover{text-decoration:underline;}
+  .legal-block strong{color:var(--vert-titre);font-weight:600;}
+  footer{background:var(--vert-titre);padding:32px 40px;}
+  .footer-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .footer-logo{font-family:'Quicksand',sans-serif;font-weight:900;font-size:1rem;color:var(--vert-titre);text-decoration:none;}
+  .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .footer-links a{color:var(--vert-titre);font-size:0.8rem;text-decoration:none;opacity:0.6;transition:opacity 0.2s;}
+  .footer-links a:hover{opacity:1;}
+  .footer-copy{font-size:0.75rem;color:var(--vert-titre);opacity:0.4;}
+  @media(max-width:600px){nav{padding:0 20px;}.page-wrap{padding:40px 20px 80px;}.legal-block{padding:24px 20px;}}
+
+  .nav-cta {
+    background: var(--vert-titre) !important;
+    color: var(--lime) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    opacity: 1 !important;
+    display: inline-block;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 1 !important;
+    color: var(--lime) !important;
+  }
+
+  /* Highlights & accents brand */
+  .hl-lime { background: var(--lime); padding: 0 5px 1px; border-radius: 3px; font-style: normal; }
+  .hl-violet { color: var(--violet); font-style: normal; }
+  .hl-blue { color: var(--blue); font-style: normal; }
+  .text-lime { color: var(--lime); }
+  .text-violet { color: var(--violet); }
+
+
+  /* FORCE footer links */
+  footer a { color: rgba(255,255,255,0.7) !important; text-decoration: none !important; font-size: 0.88rem; }
+  footer a:hover { color: #D8FF7C !important; }
+  .footer-col-title { color: #D8FF7C !important; font-family: 'Quicksand', sans-serif !important; font-weight: 700 !important; font-size: 0.75rem !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; }
+  nav { background: #4D61F4 !important; }
+  nav a.logo { color: #ffffff !important; }
+  nav ul li a { color: rgba(255,255,255,0.9) !important; }
+  nav .nav-burger { color: #ffffff !important; }
+
+</style>
+</head>
+<body>
+
+<nav style="background:#4D61F4!important;position:sticky;top:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;box-shadow:0 2px 20px rgba(77,97,244,0.35);">
+  <a href="index.html" class="logo" style="color:#ffffff!important;font-family:Quicksand,sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:0.06em;text-decoration:none;">FUZZY 🚀</a>
+  <a href="index.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<div class="page-wrap">
+  <h1 class="page-title">CGV / CGU</h1>
+  <p class="page-update">Conditions Générales de Vente et d'Utilisation — Dernière mise à jour : avril 2026</p>
+
+  <div class="legal-block">
+    <h2>Prestataire</h2>
+    <p><strong>Solen Ouahioune</strong> — Fuzzy Formation<br>
+    Micro-entreprise — SIRET : 82175254000012<br>
+    Vaux-sur-Seine, Île-de-France, France<br>
+    Email : <a href="mailto:solen@fuzzy-formation.fr">solen@fuzzy-formation.fr</a><br>
+    TVA non applicable — article 293 B du CGI</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Champ d'application</h2>
+    <p>Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les prestations de formation proposées par Fuzzy Formation, qu'elles soient réalisées en présentiel, à distance, en intra-entreprise ou en individuel.</p>
+    <p>Toute commande ou inscription implique l'acceptation sans réserve des présentes CGV.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Prestations proposées</h2>
+    <ul>
+      <li>Formations en intelligence artificielle (Claude, ChatGPT et outils IA)</li>
+      <li>Formations Notion pour l'organisation business</li>
+      <li>Formations no-code et automatisation (Make, Zapier)</li>
+      <li>Programmes sur mesure pour entreprises, équipes et écoles</li>
+      <li>Interventions et conférences</li>
+    </ul>
+  </div>
+
+  <div class="legal-block">
+    <h2>Tarifs et devis</h2>
+    <p>Les tarifs des formations sont communiqués sur devis, en fonction du format, de la durée, du nombre de participants et des besoins spécifiques de chaque client.</p>
+    <p>Tout devis est valable <strong>30 jours</strong> à compter de sa date d'émission. La confirmation de commande s'effectue par retour écrit (email) et signature de la convention de formation ou du devis.</p>
+    <p>Les prix sont exprimés en euros HT. TVA non applicable — article 293 B du CGI.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Modalités de paiement</h2>
+    <p>Le règlement s'effectue par virement bancaire ou tout autre moyen convenu lors de la confirmation de commande.</p>
+    <ul>
+      <li><strong>Formations individuelles :</strong> paiement intégral à la commande</li>
+      <li><strong>Formations entreprises :</strong> selon les modalités définies dans la convention (acompte à la commande, solde avant ou à l'issue de la formation)</li>
+      <li><strong>Financement OPCO :</strong> prise en charge possible selon votre structure et votre OPCO — les démarches sont à initier avant le début de la formation</li>
+    </ul>
+  </div>
+
+  <div class="legal-block">
+    <h2>Annulation et report</h2>
+    <p><strong>Par le client :</strong></p>
+    <ul>
+      <li>Annulation plus de 14 jours avant la formation : aucun frais</li>
+      <li>Annulation entre 7 et 14 jours avant : 50% du montant dû</li>
+      <li>Annulation moins de 7 jours avant : 100% du montant dû</li>
+    </ul>
+    <p><strong>Par Fuzzy Formation :</strong> En cas d'annulation de notre part (force majeure, indisponibilité), la formation est reportée à une date convenue mutuellement sans frais supplémentaires. Si aucune date ne convient, un remboursement intégral est effectué.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Obligations du prestataire</h2>
+    <p>Fuzzy Formation s'engage à :</p>
+    <ul>
+      <li>Délivrer la formation conformément au programme convenu</li>
+      <li>Mettre à disposition les supports pédagogiques nécessaires</li>
+      <li>Remettre une attestation de formation à l'issue de la prestation</li>
+      <li>Respecter la confidentialité des informations partagées pendant la formation</li>
+    </ul>
+  </div>
+
+  <div class="legal-block">
+    <h2>Obligations du client</h2>
+    <p>Le client s'engage à :</p>
+    <ul>
+      <li>Fournir les informations nécessaires à la personnalisation de la formation</li>
+      <li>S'assurer de la présence et de la disponibilité des participants</li>
+      <li>Mettre à disposition le matériel nécessaire (ordinateurs, connexion internet) pour les formations en présentiel</li>
+      <li>Régler les factures dans les délais convenus</li>
+    </ul>
+  </div>
+
+  <div class="legal-block">
+    <h2>Propriété intellectuelle</h2>
+    <p>Les contenus pédagogiques, supports, méthodes et programmes délivrés dans le cadre des formations restent la propriété exclusive de Solen Ouahioune / Fuzzy Formation.</p>
+    <p>Ils sont mis à disposition des participants à titre personnel et ne peuvent être reproduits, diffusés ou revendus sans autorisation écrite préalable.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Responsabilité</h2>
+    <p>Fuzzy Formation ne saurait être tenue responsable des résultats obtenus par les participants à l'issue de la formation. Les formations fournissent des outils et méthodes dont l'application relève de la responsabilité de chaque participant.</p>
+    <p>En cas de force majeure (maladie, incident technique, grève, etc.), Fuzzy Formation ne pourra être tenue responsable de l'impossibilité d'exécuter la prestation dans les conditions prévues.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Droit applicable et litiges</h2>
+    <p>Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité.</p>
+    <p>À défaut, le litige sera soumis aux tribunaux compétents du ressort de Versailles.</p>
+    <p>Conformément à l'article L.616-1 du Code de la consommation, en cas de litige non résolu amiablement, vous pouvez recourir à un médiateur de la consommation.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2>Utilisation du site (CGU)</h2>
+    <p>L'accès au site fuzzy-formation.fr est libre et gratuit. L'utilisation du site implique l'acceptation des présentes conditions.</p>
+    <p>Il est interdit d'utiliser le site à des fins illicites, de tenter d'en perturber le fonctionnement ou d'en extraire les contenus sans autorisation.</p>
+    <p>Fuzzy Formation se réserve le droit de modifier les présentes CGU à tout moment. Les modifications prennent effet dès leur publication sur le site.</p>
+  </div>
+</div>
+
+<footer style="background:#0A3E27!important;padding:48px 40px 0;display:block;">
+  <div class="footer-inner" style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <a href="index.html" class="footer-logo" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:1.2rem;color:#D8FF7C!important;text-decoration:none;letter-spacing:0.06em;">FUZZY 🚀</a>
+    <div class="footer-links">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <a href="cgv.html">CGV/CGU</a>
+    </div>
+    <span class="footer-copy">© 2026 Fuzzy Formation</span>
+  </div>
+</footer>
+
+</body>
+</html>
