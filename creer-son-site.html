@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<title>Crée ton site web avec Claude en 3h — Fuzzy Formation</title>
+<meta name="description" content="Stop WordPress. En 3 heures, tu crées ton vrai site avec Claude, GitHub et Netlify. Formation one-to-one ou atelier. 189€. Sans coder, sans galérer.">
+<link rel="canonical" href="https://fuzzy-formation.fr/creer-son-site.html">
+<meta property="og:title" content="Crée ton site web avec Claude en 3h — Fuzzy Formation">
+<meta property="og:description" content="Stop WordPress. En 3 heures, tu crées ton vrai site avec Claude, GitHub et Netlify. 189€.">
+<meta property="og:image" content="https://fuzzy-formation.fr/Solen_Ouahioune_Formatrice.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Crée ton site web avec Claude en 3h","description":"Formation pratique pour créer son site web avec Claude, GitHub et Netlify en 3 heures. Sans coder, sans WordPress.","provider":{"@type":"Organization","name":"Fuzzy Formation","url":"https://fuzzy-formation.fr"},"instructor":{"@type":"Person","name":"Solen Ouahioune"},"offers":{"@type":"Offer","price":"189","priceCurrency":"EUR"},"courseMode":["onsite","online"],"hasCourseInstance":[{"@type":"CourseInstance","courseMode":"onsite","duration":"PT3H"},{"@type":"CourseInstance","courseMode":"online","duration":"PT3H"}]}
+</script>
+<style>
+/* ── HERO SPÉCIFIQUE ── */
+.hero-site {
+  background: #0A3E27;
+  padding: 100px 48px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: end;
+}
+.hero-site::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(77,97,244,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-site-content {
+  padding-bottom: 80px;
+  position: relative;
+  z-index: 2;
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(216,255,124,0.12);
+  border: 1px solid rgba(216,255,124,0.25);
+  color: #D8FF7C;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero-site h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero-site h1 em {
+  font-style: normal;
+  color: #D8FF7C;
+}
+.hero-site-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+.hero-price-badge {
+  display: inline-flex;
+  flex-direction: column;
+  background: #4D61F4;
+  border-radius: 12px;
+  padding: 20px 28px;
+  margin-bottom: 32px;
+}
+.hero-price-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-family: 'Quicksand', sans-serif; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-price-amount { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 2.8rem; color: #D8FF7C; line-height: 1; margin: 4px 0; }
+.hero-price-detail { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+.hero-site-visual {
+  position: relative;
+  align-self: end;
+  z-index: 2;
+}
+.hero-browser-mock {
+  background: #161616;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -20px 80px rgba(0,0,0,0.5);
+  margin: 0 -20px;
+}
+.browser-bar {
+  background: #222;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+.browser-url {
+  flex: 1;
+  background: #333;
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  font-family: monospace;
+}
+.browser-content {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mock-nav { height: 8px; background: rgba(216,255,124,0.3); border-radius: 4px; width: 70%; }
+.mock-hero { height: 60px; background: linear-gradient(135deg, rgba(77,97,244,0.4), rgba(10,62,39,0.6)); border-radius: 8px; }
+.mock-text { display: flex; flex-direction: column; gap: 6px; }
+.mock-line { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+.mock-btn { height: 28px; background: rgba(216,255,124,0.25); border-radius: 6px; width: 120px; margin-top: 4px; }
+.mock-label {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: #D8FF7C;
+  color: #0A3E27;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ── OUTILS ── */
+.outils-strip {
+  background: #4D61F4;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.outil-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.85);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.outil-icon { font-size: 1.4rem; }
+.outil-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+
+/* ── PROBLÈME ── */
+.probleme { background: #F6F5F1; }
+.probleme-inner { max-width: 860px; margin: 0 auto; }
+.probleme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.probleme-texte p { font-size: 1.05rem; color: #4A4A4A; line-height: 1.85; margin-bottom: 18px; }
+.probleme-texte p strong { color: #0A3E27; font-weight: 600; }
+.probleme-liste { display: flex; flex-direction: column; gap: 3px; }
+.pb-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  border-left: 3px solid #CC4444;
+}
+.pb-item.solved { border-left-color: #D8FF7C; }
+.pb-x { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.pb-text { font-size: 0.9rem; color: #4A4A4A; line-height: 1.55; }
+.pb-text strong { color: #0A3E27; font-weight: 600; }
+
+/* ── CE QU'ON CONSTRUIT ── */
+.build { background: #0A3E27; }
+.build-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 48px; }
+.build-card {
+  background: rgba(255,255,255,0.04);
+  padding: 36px 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.2s;
+}
+.build-card:hover { background: rgba(255,255,255,0.07); }
+.build-step {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #D8FF7C;
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.build-card h3 { color: #D8FF7C; font-size: 1rem; margin-bottom: 10px; }
+.build-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 14px; }
+.build-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.build-tag {
+  background: rgba(216,255,124,0.1);
+  border: 1px solid rgba(216,255,124,0.2);
+  color: rgba(216,255,124,0.8);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+/* ── POUR QUI ── */
+.pourqui { background: #D0EEF9; }
+.pourqui-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.pourqui-oui, .pourqui-non {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 28px;
+}
+.pourqui-oui { border-top: 4px solid #D8FF7C; }
+.pourqui-non { border-top: 4px solid rgba(0,0,0,0.08); }
+.pourqui-label {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.pourqui-oui .pourqui-label { color: #2A6B2A; }
+.pourqui-non .pourqui-label { color: #888; }
+.pourqui-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 0.9rem; color: #4A4A4A; line-height: 1.55; }
+.pourqui-oui .pourqui-item::before { content: '✓'; color: #2A6B2A; font-weight: 700; flex-shrink: 0; }
+.pourqui-non .pourqui-item::before { content: '✗'; color: #CC4444; font-weight: 700; flex-shrink: 0; }
+
+/* ── PROOF ── */
+.proof { background: #F6F5F1; }
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.proof-card {
+  background: #0A3E27;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+.proof-highlight {
+  background: #4D61F4;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+.proof-stat {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #D8FF7C;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.proof-highlight .proof-stat { color: #fff; }
+.proof-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.proof-highlight .proof-desc { color: rgba(255,255,255,0.75); }
+
+/* ── FORMATS ── */
+.formats { background: #fff; }
+.formats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.format-card {
+  border-radius: 12px;
+  padding: 36px 32px;
+  border: 2px solid rgba(0,0,0,0.06);
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.format-card:hover { border-color: #D8FF7C; transform: translateY(-3px); }
+.format-card.featured {
+  background: #0A3E27;
+  border-color: #0A3E27;
+}
+.format-badge {
+  position: absolute;
+  top: -12px; left: 28px;
+  background: #D8FF7C;
+  color: #0A3E27;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.format-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.format-card.featured h3 { color: #D8FF7C; }
+.format-card p { font-size: 0.88rem; color: #4A4A4A; line-height: 1.7; margin-bottom: 18px; }
+.format-card.featured p { color: rgba(255,255,255,0.6); }
+.format-price {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0A3E27;
+  margin-bottom: 4px;
+}
+.format-card.featured .format-price { color: #D8FF7C; }
+.format-incl { font-size: 0.78rem; color: #888; }
+.format-card.featured .format-incl { color: rgba(255,255,255,0.4); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-site { grid-template-columns: 1fr; padding: 80px 20px 0; min-height: auto; }
+  .hero-site-visual { display: none; }
+  .hero-site-content { padding-bottom: 60px; }
+  .outils-strip { gap: 20px; padding: 20px; }
+  .outil-sep { display: none; }
+  .probleme-grid, .pourqui-cols, .formats-grid, .proof-grid { grid-template-columns: 1fr; }
+  .build-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">FUZZY 🚀</a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="index.html#programmes" class="nav-dropdown-toggle nav-active">Formations ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="claude.html">🤖 Maîtriser Claude</a></li>
+        <li><a href="creer-son-site.html" class="current">🌐 Crée ton site avec Claude</a></li>
+        <li><a href="ia-entreprise.html">🏢 IA en Entreprise</a></li>
+        <li><a href="notion.html">📋 Notion Business</a></li>
+        <li><a href="nocode.html">⚡ No-Code & Automatisation</a></li>
+      </ul>
+    </li>
+    <li><a href="solen-ouahioune.html">À propos</a></li>
+    <li><a href="conferenciere.html">Conférences</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">PRENEZ UN RDV ☎️</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="claude.html">🤖 Maîtriser Claude</a>
+  <a href="creer-son-site.html" style="font-weight:800;">🌐 Crée ton site avec Claude</a>
+  <a href="ia-entreprise.html">🏢 IA en Entreprise</a>
+  <a href="notion.html">📋 Notion Business</a>
+  <a href="nocode.html">⚡ No-Code & Automatisation</a>
+  <a href="solen-ouahioune.html">À propos</a>
+  <a href="conferenciere.html">Conférences</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="mobile-cta">PRENEZ UN RDV ☎️</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-site">
+  <div class="hero-site-content">
+    <div class="hero-kicker">🌐 Nouveau · Formation 3h</div>
+    <h1>Stop WordPress.<br>Crée ton site avec<br><em>Claude en 3h.</em></h1>
+    <p class="hero-site-sub">Tu n'as pas besoin d'un prestataire à 1500€. Tu n'as pas besoin de comprendre le code. Tu as besoin de 3 heures, d'un bon accompagnement, et des bons outils.</p>
+    <div class="hero-price-badge">
+      <span class="hero-price-label">Formation one-to-one ou atelier</span>
+      <span class="hero-price-amount">189€</span>
+      <span class="hero-price-detail">3h · Présentiel ou visio · Tu repars avec ton site en ligne</span>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Réserver ma session →</a>
+      <a href="#programme" class="btn-outline">Voir le programme ↓</a>
+    </div>
+  </div>
+  <div class="hero-site-visual">
+    <div class="hero-browser-mock" style="position:relative;">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="browser-dot" style="background:#FF5F57;"></div>
+          <div class="browser-dot" style="background:#FEBC2E;"></div>
+          <div class="browser-dot" style="background:#28C840;"></div>
+        </div>
+        <div class="browser-url">mon-site-pro.fr ✓</div>
+      </div>
+      <div class="browser-content">
+        <div class="mock-nav"></div>
+        <div class="mock-hero"></div>
+        <div class="mock-text">
+          <div class="mock-line" style="width:80%"></div>
+          <div class="mock-line" style="width:60%"></div>
+          <div class="mock-line" style="width:70%"></div>
+          <div class="mock-btn"></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <div style="height:50px;flex:1;background:rgba(255,255,255,0.05);border-radius:8px;"></div>
+          <div style="height:50px;flex:1;background:rgba(255,255,255,0.05);border-radius:8px;"></div>
+          <div style="height:50px;flex:1;background:rgba(255,255,255,0.05);border-radius:8px;"></div>
+        </div>
+      </div>
+      <div class="mock-label">Fait en 3h ⚡</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTILS -->
+<div class="outils-strip">
+  <span class="outil-item"><span class="outil-icon">🤖</span> Claude</span>
+  <span class="outil-sep"></span>
+  <span class="outil-item"><span class="outil-icon">🐙</span> GitHub</span>
+  <span class="outil-sep"></span>
+  <span class="outil-item"><span class="outil-icon">🚀</span> Netlify</span>
+  <span class="outil-sep"></span>
+  <span style="font-family:'Quicksand',sans-serif;font-size:0.82rem;color:rgba(255,255,255,0.5);">Zéro WordPress · Zéro abonnement mensuel · 100% à toi</span>
+</div>
+
+<!-- PROBLÈME -->
+<section class="probleme section-pad">
+  <div class="probleme-inner">
+    <span class="eyebrow">Le constat</span>
+    <h2 style="margin-bottom:40px;">Tu veux un site pro.<br>Pas une galère.</h2>
+    <div class="probleme-grid">
+      <div class="probleme-texte">
+        <p>WordPress, Wix, Squarespace. Tu as essayé, tu t'es perdue dans les plugins, les thèmes, les mises à jour, les bugs. Ou tu as payé quelqu'un et tu es dépendante pour la moindre modification.</p>
+        <p><strong>La réalité c'est que tu n'as pas besoin de tout ça.</strong> Un site statique bien fait, hébergé gratuitement, que tu peux modifier seule quand tu veux — c'est largement suffisant pour la majorité des entrepreneures.</p>
+        <p>Et maintenant, Claude peut le construire avec toi en quelques heures. Ce que j'ai fait pour <strong>fuzzy-formation.fr</strong>, tu peux le faire pour ton business.</p>
+      </div>
+      <div class="probleme-liste">
+        <div class="pb-item">
+          <span class="pb-x">✗</span>
+          <span class="pb-text"><strong>WordPress</strong> — plugins, mises à jour, bugs, abonnement mensuel, dépendance à un presta</span>
+        </div>
+        <div class="pb-item">
+          <span class="pb-x">✗</span>
+          <span class="pb-text"><strong>Wix / Squarespace</strong> — abonnement à vie, site qui t'appartient pas vraiment, exports compliqués</span>
+        </div>
+        <div class="pb-item">
+          <span class="pb-x">✗</span>
+          <span class="pb-text"><strong>Presta web</strong> — 800 à 2000€, délais, allers-retours, tu n'es jamais autonome</span>
+        </div>
+        <div class="pb-item solved">
+          <span class="pb-x">✓</span>
+          <span class="pb-text"><strong>Claude + GitHub + Netlify</strong> — gratuit, à toi, modifiable quand tu veux, professionnel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QU'ON CONSTRUIT -->
+<section class="build section-pad" id="programme">
+  <div class="max-w">
+    <span class="eyebrow eyebrow-lime">Le programme</span>
+    <h2 style="color:#fff;">Ce qu'on construit ensemble en 3h</h2>
+    <p style="color:rgba(255,255,255,0.55);max-width:560px;margin-bottom:0;">Pas un template vide. Un vrai site à ton image, en ligne à la fin de la session.</p>
+    <div class="build-grid">
+      <div class="build-card reveal">
+        <div class="build-step">01</div>
+        <h3>Les fondations (45 min)</h3>
+        <p>On installe Claude, on crée ton compte GitHub et on configure Netlify. Tu comprends comment les 3 outils fonctionnent ensemble — et pourquoi c'est bien meilleur que WordPress.</p>
+        <div class="build-tags">
+          <span class="build-tag">Claude Pro</span>
+          <span class="build-tag">GitHub</span>
+          <span class="build-tag">Netlify</span>
+          <span class="build-tag">Premier déploiement</span>
+        </div>
+      </div>
+      <div class="build-card reveal">
+        <div class="build-step">02</div>
+        <h3>Ton site prend forme (90 min)</h3>
+        <p>On crée tes premières pages avec Claude : homepage, page offres, page contact. Tu apprends à prompter pour le code, à itérer, à modifier. Le site correspond à ta charte et à ton message.</p>
+        <div class="build-tags">
+          <span class="build-tag">Homepage</span>
+          <span class="build-tag">Page offres</span>
+          <span class="build-tag">Contact</span>
+          <span class="build-tag">Prompt engineering</span>
+        </div>
+      </div>
+      <div class="build-card reveal">
+        <div class="build-step">03</div>
+        <h3>Mise en ligne et autonomie (45 min)</h3>
+        <p>On connecte ton domaine, on vérifie tout, on fait les derniers ajustements. Et surtout : je te montre comment modifier ton site seule à l'avenir. Tu n'auras plus jamais besoin de quelqu'un d'autre.</p>
+        <div class="build-tags">
+          <span class="build-tag">Nom de domaine</span>
+          <span class="build-tag">Mise en ligne</span>
+          <span class="build-tag">SEO de base</span>
+          <span class="build-tag">Autonomie totale</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="pourqui section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Pour qui ?</span>
+    <h2 style="margin-bottom:40px;">C'est fait pour toi si…</h2>
+    <div class="pourqui-cols">
+      <div class="pourqui-oui reveal">
+        <div class="pourqui-label">✓ C'est pour toi</div>
+        <div class="pourqui-item">Tu es entrepreneur·e et tu veux un site pro sans te ruiner</div>
+        <div class="pourqui-item">Tu en as assez de payer un abonnement mensuel pour un outil que tu ne maîtrises pas</div>
+        <div class="pourqui-item">Tu veux être autonome et pouvoir modifier ton site toi-même</div>
+        <div class="pourqui-item">Tu as quelques heures à investir une bonne fois pour toutes</div>
+        <div class="pourqui-item">Tu utilises déjà Claude ou tu veux aller plus loin avec</div>
+      </div>
+      <div class="pourqui-non reveal">
+        <div class="pourqui-label">✗ Ce n'est pas pour toi</div>
+        <div class="pourqui-item">Tu veux un site e-commerce complexe avec des centaines de produits</div>
+        <div class="pourqui-item">Tu as besoin d'un espace membres avec gestion d'abonnements</div>
+        <div class="pourqui-item">Tu cherches quelqu'un qui fait tout à ta place sans t'impliquer</div>
+        <div class="pourqui-item">Tu n'es pas prête à passer 3h dessus maintenant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof section-pad">
+  <div class="max-w">
+    <span class="eyebrow">La preuve</span>
+    <h2 style="margin-bottom:40px;">Ce site ? Il a été construit avec Claude.</h2>
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <div class="proof-stat">0€</div>
+        <div class="proof-desc">d'hébergement par mois. GitHub + Netlify = gratuit pour un site statique.</div>
+      </div>
+      <div class="proof-highlight reveal">
+        <div class="proof-stat" style="color:#D8FF7C;">fuzzy-formation.fr</div>
+        <div class="proof-desc">Ce site que tu es en train de lire a été entièrement conçu avec Claude — HTML, CSS, contenu, SEO. Sans agence, sans WordPress, sans budget web.</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stat">100%</div>
+        <div class="proof-desc">autonome. Tu peux modifier n'importe quelle page seule, sans toucher au code si tu ne veux pas.</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stat">3h</div>
+        <div class="proof-desc">c'est le temps qu'il faut pour avoir les bases en ligne. Pas 3 semaines, pas 3 mois. 3 heures.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="formats section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Formats disponibles</span>
+    <h2 style="margin-bottom:16px;">Choisis ce qui te convient</h2>
+    <p class="section-intro">Même contenu, même résultat. Tu choisis le format selon ta préférence.</p>
+    <div class="formats-grid">
+      <div class="format-card featured reveal">
+        <div class="format-badge">Le plus populaire</div>
+        <h3>Session one-to-one</h3>
+        <p>3h en visio ou en présentiel (région parisienne), juste toutes les deux. On avance à ton rythme, on s'adapte à ton business, à ta charte, à tes pages prioritaires.</p>
+        <div class="format-price">189€</div>
+        <div class="format-incl">3h · Présentiel ou visio · Tu repars avec ton site en ligne</div>
+        <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary" style="margin-top:20px;font-size:0.88rem;padding:12px 24px;">Réserver ma session →</a>
+      </div>
+      <div class="format-card reveal">
+        <h3>Atelier collectif</h3>
+        <p>Format groupe, présentiel ou visio. Maximum 6 participantes pour garder l'efficacité. Idéal si tu veux apprendre avec d'autres entrepreneures.</p>
+        <div class="format-price">189€</div>
+        <div class="format-incl">3h · Dates à venir · Groupe max 6</div>
+        <a href="mailto:solen@fuzzy-formation.fr" style="display:inline-flex;align-items:center;gap:6px;color:#4D61F4;font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.88rem;text-decoration:none;margin-top:20px;">Me prévenir des prochaines dates →</a>
+      </div>
+    </div>
+
+    <!-- MODULE CLAUDE -->
+    <div style="background:#D0EEF9;border-radius:12px;padding:28px 32px;margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;" class="reveal">
+      <div>
+        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#4D61F4;display:block;margin-bottom:8px;">Inclus dans</span>
+        <h3 style="margin-bottom:6px;">Programme Maîtriser Claude 🤖</h3>
+        <p style="font-size:0.88rem;color:#4A4A4A;line-height:1.65;">Ce module fait partie du programme complet "Maîtriser Claude pour son business". Si tu veux aller encore plus loin — Projects, Skills, automatisations — c'est là que ça se passe.</p>
+      </div>
+      <a href="claude.html" class="btn-dark" style="flex-shrink:0;font-size:0.85rem;padding:12px 22px;">Voir le programme complet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-fond section-pad">
+  <div class="max-w-sm">
+    <span class="eyebrow">FAQ</span>
+    <h2 style="margin-bottom:40px;">Questions fréquentes</h2>
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      <details class="faq-item"><summary>Faut-il savoir coder pour suivre cette formation ?</summary><div>Non. Claude génère le code à ta place. Tu apprends à lui donner les bonnes instructions — c'est très différent d'apprendre à coder. Si tu sais décrire ce que tu veux, tu sais utiliser Claude pour créer un site.</div></details>
+      <details class="faq-item"><summary>Est-ce que j'ai besoin d'acheter quelque chose ?</summary><div>Claude Pro à 20€/mois (tu peux annuler après). GitHub et Netlify sont gratuits. Un nom de domaine si tu en veux un (environ 10-15€/an). C'est tout. Zéro abonnement caché, zéro frais récurrent obligatoire.</div></details>
+      <details class="faq-item"><summary>Quel type de site peut-on créer en 3h ?</summary><div>Un site vitrine professionnel avec homepage, page offres/services, page à propos et page contact. Parfait pour une coach, consultante, formatrice, prestataire de services. Pour un e-commerce ou un espace membres, ce n'est pas le bon format.</div></details>
+      <details class="faq-item"><summary>Est-ce que je pourrai modifier mon site seule après ?</summary><div>Oui, c'est même l'objectif principal. On passe la dernière partie de la session à te rendre complètement autonome. Tu sauras modifier les textes, ajouter des sections, mettre à jour le contenu — sans dépendre de personne.</div></details>
+      <details class="faq-item"><summary>C'est quoi la différence avec le programme Claude complet ?</summary><div>Cette session se concentre uniquement sur la création de site web. Le programme complet "Maîtriser Claude" couvre en plus le paramétrage avancé, les Projects, les Skills, Claude Cowork et les automatisations N8N. Si tu veux tout, va sur <a href="claude.html" style="color:#4D61F4;">la page programme</a>.</div></details>
+      <details class="faq-item"><summary>La formation est-elle finançable OPCO ?</summary><div>Oui. Je suis formatrice agréée NDA et je travaille avec des organismes partenaires certifiés Qualiopi. La prise en charge OPCO est envisageable selon votre structure.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="max-w">
+    <span class="eyebrow cta-eyebrow" style="display:block;margin-bottom:10px;">Prête à sauter le pas ?</span>
+    <h2>Ton site en ligne.<br>Dans 3 heures. 🌐</h2>
+    <p>Réserve ta session. On cale une date qui te convient et tu repars avec ton site professionnel en ligne — pour toujours.</p>
+    <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Réserver ma session — 189€ →</a>
+    <p class="cta-detail">Questions ? <a href="mailto:solen@fuzzy-formation.fr" style="color:rgba(255,255,255,0.5);text-decoration:underline;">solen@fuzzy-formation.fr</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">FUZZY 🚀</a>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <span class="footer-col-title">Formations</span>
+        <a href="claude.html">🤖 Maîtriser Claude</a>
+        <a href="creer-son-site.html" style="color:#D8FF7C!important;">🌐 Crée ton site avec Claude</a>
+        <a href="ia-entreprise.html">🏢 IA en Entreprise</a>
+        <a href="notion.html">📋 Notion Business</a>
+        <a href="nocode.html">⚡ No-Code & Automatisation</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Fuzzy</span>
+        <a href="solen-ouahioune.html">À propos</a>
+        <a href="conferenciere.html">Conférences</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9">Prendre un RDV</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Légal</span>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <a href="cgv.html">CGV / CGU</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fuzzy Formation · solen@fuzzy-formation.fr</span>
+    <span>Formatrice agréée NDA · Financement OPCO possible</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown').forEach(function(el){
+  var menu=el.querySelector('.dropdown-menu');if(!menu)return;var t;
+  el.addEventListener('mouseenter',function(){clearTimeout(t);menu.classList.add('open');});
+  el.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  menu.addEventListener('mouseenter',function(){clearTimeout(t);});
+  menu.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  document.addEventListener('click',function(e){if(!el.contains(e.target))menu.classList.remove('open');});
+});
+document.querySelectorAll('.reveal').forEach(function(el){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});obs.observe(el);
+});
+</script>
+</body>
+</html>
