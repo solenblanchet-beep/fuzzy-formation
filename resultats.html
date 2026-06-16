@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<title>Résultats & évaluations — Ce que disent nos clients | Fuzzy Formation</title>
+<meta name="description" content="98,2/100 en expertise. 84,6/100 de satisfaction globale. Les évaluations réelles de nos formations IA — UCPA, CMAR IDF, Enorise, Cegos. Verbatims non édités.">
+<link rel="canonical" href="https://fuzzy-formation.fr/resultats.html">
+<meta property="og:title" content="Résultats & évaluations — Fuzzy Formation">
+<meta property="og:description" content="98,2/100 en expertise formatrice. Les évaluations réelles de 5 sessions Cegos — 46 stagiaires, clients entreprises. Verbatims non édités.">
+<meta property="og:image" content="https://fuzzy-formation.fr/Solen_Ouahioune_Formatrice.jpg">
+<style>
+/* HERO */
+.res-hero {
+  background: #0A3E27;
+  padding: 100px 48px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.res-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(77,97,244,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.res-hero-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* SCORE RING */
+.score-ring-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.score-big {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-align: center;
+}
+.score-big-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  color: #D8FF7C;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-big-label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+.score-small-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.score-small {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.score-small-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #D8FF7C;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-small-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.4;
+}
+
+/* ÉVALUATIONS PAR SESSION */
+.sessions { background: #F6F5F1; }
+.session-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin-bottom: 16px;
+  border-left: 5px solid #D8FF7C;
+  position: relative;
+}
+.session-card.avg {
+  border-left-color: #CC88FF;
+}
+.session-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+.session-meta {}
+.session-client {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #0A3E27;
+  margin-bottom: 6px;
+}
+.session-detail {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.6;
+}
+.session-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.session-pill {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: #F6F5F1;
+  color: #4A4A4A;
+}
+.session-score {
+  text-align: center;
+  flex-shrink: 0;
+}
+.session-score-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.session-score-label {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+/* BARRES */
+.session-bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+.bar-item { display: flex; align-items: center; gap: 10px; }
+.bar-name { font-size: 0.8rem; color: #4A4A4A; flex: 0 0 180px; }
+.bar-bg { flex: 1; height: 6px; background: #F0EDEA; border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+.bar-val { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 0.78rem; color: #0A3E27; flex: 0 0 36px; text-align: right; }
+
+/* VERBATIMS SESSION */
+.session-verbatims { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.sv {
+  background: #F6F5F1;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: #4A4A4A;
+  line-height: 1.7;
+  font-style: italic;
+  position: relative;
+}
+.sv::before {
+  content: '"';
+  font-size: 2rem;
+  color: #D8FF7C;
+  line-height: 0;
+  vertical-align: -12px;
+  margin-right: 4px;
+}
+
+/* BILAN FORMATRICE */
+.bilan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.bilan-card {
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+}
+.bilan-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.bilan-label {
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* LOGOS CLIENTS */
+.logos-strip {
+  background: #fff;
+  padding: 40px 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.logos-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.logo-client {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0A3E27;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+.logo-client:hover { opacity: 1; }
+.logo-cegos {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #4D61F4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .res-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .res-hero { padding: 72px 20px 56px; }
+  .session-header { grid-template-columns: 1fr; }
+  .session-score { text-align: left; }
+  .session-bars { grid-template-columns: 1fr; }
+  .bilan-grid { grid-template-columns: repeat(2, 1fr); }
+  .logos-inner { gap: 24px; }
+  .score-small-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">FUZZY 🚀</a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="formations.html" class="nav-dropdown-toggle">Formations ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="formations.html">📋 Toutes les formations</a></li>
+        <li><a href="sensibilisation-ia.html">🌱 Sensibilisation · 490€</a></li>
+        <li><a href="formation-metier-ia.html">🎯 Formation métier · 1190€</a></li>
+        <li><a href="bootcamp-ia-equipe.html">🚀 Bootcamp · 2990€</a></li>
+        <li><a href="adoption-ia-suivi.html">📈 Adoption + suivi · 1990€</a></li>
+        <li><a href="ia-equipes-commerciales.html">📊 IA pour commerciaux</a></li>
+        <li><a href="ia-rh.html">👥 IA pour RH</a></li>
+        <li><a href="ia-dirigeants-pme.html">🎯 IA pour dirigeants</a></li>
+        <li><a href="ia-ecoles.html">🎓 IA pour écoles</a></li>
+      </ul>
+    </li>
+    <li><a href="resultats.html" style="color:#D8FF7C!important;font-weight:700!important;">Résultats</a></li>
+    <li><a href="diagnostic-ia-pme.html">Diagnostic IA</a></li>
+    <li><a href="financement-opco.html">Financement</a></li>
+    <li><a href="solen-ouahioune.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">PRENEZ UN RDV ☎️</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formations.html">📋 Toutes les formations</a>
+  <a href="resultats.html" style="font-weight:800;">⭐ Résultats & évaluations</a>
+  <a href="diagnostic-ia-pme.html">🔍 Diagnostic IA</a>
+  <a href="financement-opco.html">💰 Financement OPCO</a>
+  <a href="solen-ouahioune.html">À propos</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="mobile-cta">PRENEZ UN RDV ☎️</a>
+</div>
+
+<!-- HERO -->
+<section class="res-hero">
+  <div class="res-hero-inner">
+    <div>
+      <span class="eyebrow eyebrow-lime" style="display:block;margin-bottom:16px;">Évaluations · Cegos · 2026</span>
+      <h1 style="color:#fff;margin-bottom:20px;">Les chiffres<br>parlent d'eux-mêmes.</h1>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:32px;max-width:500px;">Ce ne sont pas des témoignages sélectionnés. Ce sont les évaluations officielles Cegos, remplies à chaud par les stagiaires — non édités, non triés. Voilà ce qui se passe dans nos formations.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="#sessions" class="btn-primary">Voir les évaluations ↓</a>
+        <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-outline">Demander un devis ☎️</a>
+      </div>
+    </div>
+    <div class="score-ring-wrap">
+      <div class="score-big">
+        <div class="score-big-num">98,2</div>
+        <div class="score-big-label">/100 · Expertise formatrice<br>Moyenne sur 5 sessions · 2026</div>
+      </div>
+      <div class="score-small-grid">
+        <div class="score-small">
+          <div class="score-small-num">84,6</div>
+          <div class="score-small-label">Satisfaction<br>globale /100</div>
+        </div>
+        <div class="score-small">
+          <div class="score-small-num">90,6</div>
+          <div class="score-small-label">Qualité des<br>échanges /100</div>
+        </div>
+        <div class="score-small">
+          <div class="score-small-num">46</div>
+          <div class="score-small-label">Stagiaires<br>formés</div>
+        </div>
+        <div class="score-small">
+          <div class="score-small-num">5</div>
+          <div class="score-small-label">Sessions<br>évaluées</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS CLIENTS -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span style="font-family:'Quicksand',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;">Clients formés</span>
+    <span class="logo-client">UCPA Sport Vacances</span>
+    <span class="logo-client">CMAR IDF</span>
+    <span class="logo-client">Enorise SAS</span>
+    <span class="logo-cegos">Via Cegos · Certifié Qualiopi</span>
+  </div>
+</div>
+
+<!-- BILAN FORMATRICE -->
+<section class="section-blanc section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Bilan formatrice · 5 sessions</span>
+    <h2 style="margin-bottom:40px;">Ce que les stagiaires évaluent</h2>
+    <div class="bilan-grid">
+      <div class="bilan-card reveal" style="background:#0A3E27;">
+        <div class="bilan-num" style="color:#D8FF7C;">98,2</div>
+        <div class="bilan-label" style="color:rgba(255,255,255,0.55);">Expertise sur<br>le sujet de formation</div>
+      </div>
+      <div class="bilan-card reveal" style="background:#4D61F4;">
+        <div class="bilan-num" style="color:#fff;">90,6</div>
+        <div class="bilan-label" style="color:rgba(255,255,255,0.65);">Qualité des<br>échanges</div>
+      </div>
+      <div class="bilan-card reveal" style="background:#D0EEF9;">
+        <div class="bilan-num" style="color:#0A3E27;">84,8</div>
+        <div class="bilan-label" style="color:#4A4A4A;">Variété des<br>activités proposées</div>
+      </div>
+      <div class="bilan-card reveal" style="background:#F6F5F1;">
+        <div class="bilan-num" style="color:#0A3E27;">74,4</div>
+        <div class="bilan-label" style="color:#4A4A4A;">Prise en compte<br>des objectifs</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#888;margin-top:14px;text-align:center;">Note : le score "prise en compte des objectifs" est structurellement impacté par les sessions INTER-entreprises Cegos, où le programme est commun à des participants d'entreprises différentes avec des outils variés.</p>
+  </div>
+</section>
+
+<!-- SESSIONS DÉTAIL -->
+<section class="sessions section-pad" id="sessions">
+  <div class="max-w">
+    <span class="eyebrow">Évaluations détaillées</span>
+    <h2 style="margin-bottom:8px;">5 sessions · Mars → Juin 2026</h2>
+    <p class="section-intro">Évaluations officielles Cegos. Verbatims non édités.</p>
+
+    <!-- SESSION 1 : UCPA -->
+    <div class="session-card reveal">
+      <div class="session-header">
+        <div class="session-meta">
+          <div class="session-client">UCPA Sport Vacances</div>
+          <div class="session-detail">
+            12-13 mars 2026 · Formation INTRA · 12 stagiaires · 4 répondants<br>
+            Programme : L'IA au service de la productivité commerciale
+          </div>
+          <div class="session-pills">
+            <span class="session-pill">📍 Présentiel</span>
+            <span class="session-pill">🏢 INTRA</span>
+            <span class="session-pill">Via Cegos</span>
+          </div>
+        </div>
+        <div class="session-score">
+          <div class="session-score-num" style="color:#2A6B2A;">92</div>
+          <div class="session-score-label">/100 · utilité globale</div>
+        </div>
+      </div>
+      <div class="session-bars">
+        <div class="bar-item">
+          <div class="bar-name">Intérêt des contenus</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:83%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">83</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Expertise formatrice</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0A3E27;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Documentation / supports</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:83%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">83</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Prise en compte objectifs</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0A3E27;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Accueil / salle</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:83%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">83</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Qualité des échanges</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:92%;background:#4D61F4;"></div></div>
+          <div class="bar-val">92</div>
+        </div>
+      </div>
+      <div class="session-verbatims">
+        <div class="sv">Formatrice disponible et à l'écoute. Connaît parfaitement le sujet et sait s'adapter en fonction de nos besoins.</div>
+        <div class="sv">La pratique, les conseils — adapté à notre poste.</div>
+      </div>
+    </div>
+
+    <!-- SESSION 2 : ENORISE -->
+    <div class="session-card reveal">
+      <div class="session-header">
+        <div class="session-meta">
+          <div class="session-client">Enorise SAS</div>
+          <div class="session-detail">
+            16-17 mars 2026 · Formation INTRA · 8 stagiaires · 3 répondants<br>
+            Programme : L'IA au service de la productivité commerciale
+          </div>
+          <div class="session-pills">
+            <span class="session-pill">💻 Classe virtuelle</span>
+            <span class="session-pill">🏢 INTRA</span>
+            <span class="session-pill">Via Cegos</span>
+          </div>
+        </div>
+        <div class="session-score">
+          <div class="session-score-num" style="color:#2A6B2A;">89</div>
+          <div class="session-score-label">/100 · utilité globale</div>
+        </div>
+      </div>
+      <div class="session-bars">
+        <div class="bar-item">
+          <div class="bar-name">Intérêt des contenus</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:78%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">78</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Expertise formatrice</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0A3E27;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Documentation / supports</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:56%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">56</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Variété des activités</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#4D61F4;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Classe virtuelle</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:67%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">67</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Qualité des échanges</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:78%;background:#4D61F4;"></div></div>
+          <div class="bar-val">78</div>
+        </div>
+      </div>
+      <div class="session-verbatims">
+        <div class="sv">Consultante très à l'écoute, avec une connaissance du sujet impressionnante.</div>
+        <div class="sv">Le partage d'informations, la bonne ambiance, les exercices faits sur plusieurs IA. Beaucoup de contenus à l'usage professionnel mais aussi personnel.</div>
+      </div>
+    </div>
+
+    <!-- SESSION 3 : PARIS INTER -->
+    <div class="session-card avg reveal">
+      <div class="session-header">
+        <div class="session-meta">
+          <div class="session-client">Session inter-entreprises · Paris</div>
+          <div class="session-detail">
+            22-23 avril 2026 · Formation INTER · 10 stagiaires · 6 répondants<br>
+            Programme : L'IA au service de la productivité commerciale
+          </div>
+          <div class="session-pills">
+            <span class="session-pill">📍 Présentiel Paris</span>
+            <span class="session-pill">🌐 INTER-entreprises</span>
+            <span class="session-pill">Via Cegos</span>
+          </div>
+        </div>
+        <div class="session-score">
+          <div class="session-score-num" style="color:#AA4444;">72</div>
+          <div class="session-score-label">/100 · utilité globale</div>
+        </div>
+      </div>
+      <div class="session-bars">
+        <div class="bar-item">
+          <div class="bar-name">Intérêt des contenus</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:72%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">72</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Expertise formatrice</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:94%;background:#0A3E27;"></div></div>
+          <div class="bar-val">94</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Documentation / supports</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:78%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">78</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Qualité des échanges</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:93%;background:#4D61F4;"></div></div>
+          <div class="bar-val">93</div>
+        </div>
+      </div>
+      <div class="session-verbatims">
+        <div class="sv">La formatrice était parfaite ! Mais 2 jours semblent trop courts vu les différences de niveaux. J'aurais aimé une journée supplémentaire où on travaille individuellement sur un projet concret — et où on repart avec un outil paramétré pour notre quotidien.</div>
+        <div class="sv">J'ai apprécié l'outil utilisé par la formatrice pour mettre les informations à disposition. C'était fluide.</div>
+      </div>
+      <div style="background:#FFF8F0;border:1px solid rgba(204,136,255,0.2);border-radius:8px;padding:12px 16px;margin-top:12px;font-size:0.8rem;color:#888;line-height:1.6;">
+        <strong style="color:#7733AA;">Note :</strong> Les scores plus faibles de cette session reflètent le format INTER-entreprises Cegos, où 10 participants de structures différentes suivent un programme standardisé. La formatrice obtient 94/100 en expertise et 93/100 en qualité d'échanges malgré ce contexte contraint.
+      </div>
+    </div>
+
+    <!-- SESSION 4 : IA NO CODE MARKETING -->
+    <div class="session-card avg reveal">
+      <div class="session-header">
+        <div class="session-meta">
+          <div class="session-client">Session inter-entreprises · Paris</div>
+          <div class="session-detail">
+            20 mai 2026 · Formation INTER · 4 stagiaires · 2 répondants<br>
+            Programme : L'IA et les outils no code au service de l'automatisation marketing
+          </div>
+          <div class="session-pills">
+            <span class="session-pill">📍 Présentiel Paris</span>
+            <span class="session-pill">🌐 INTER-entreprises</span>
+            <span class="session-pill">Via Cegos</span>
+          </div>
+        </div>
+        <div class="session-score">
+          <div class="session-score-num" style="color:#AA7700;">83</div>
+          <div class="session-score-label">/100 · utilité globale</div>
+        </div>
+      </div>
+      <div class="session-bars">
+        <div class="bar-item">
+          <div class="bar-name">Intérêt des contenus</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:67%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">67</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Expertise formatrice</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0A3E27;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Documentation / supports</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:67%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">67</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Qualité des échanges</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#4D61F4;"></div></div>
+          <div class="bar-val">100</div>
+        </div>
+      </div>
+      <div class="session-verbatims">
+        <div class="sv">J'ai beaucoup apprécié les connaissances et l'expertise de la formatrice. Des échanges très pertinents.</div>
+      </div>
+    </div>
+
+    <!-- SESSION 5 : CMAR IDF -->
+    <div class="session-card reveal">
+      <div class="session-header">
+        <div class="session-meta">
+          <div class="session-client">CMAR IDF — Chambre de Métiers</div>
+          <div class="session-detail">
+            1-2 juin 2026 · Formation INTRA · 12 stagiaires · 10 répondants<br>
+            Programme : L'IA au service de la productivité commerciale
+          </div>
+          <div class="session-pills">
+            <span class="session-pill">💻 Classe virtuelle</span>
+            <span class="session-pill">🏢 INTRA</span>
+            <span class="session-pill">Via Cegos</span>
+          </div>
+        </div>
+        <div class="session-score">
+          <div class="session-score-num" style="color:#AA7700;">87</div>
+          <div class="session-score-label">/100 · utilité globale</div>
+        </div>
+      </div>
+      <div class="session-bars">
+        <div class="bar-item">
+          <div class="bar-name">Intérêt des contenus</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:87%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">87</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Expertise formatrice</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:97%;background:#0A3E27;"></div></div>
+          <div class="bar-val">97</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Documentation / supports</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:80%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">80</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Variété des activités</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:87%;background:#CC88FF;"></div></div>
+          <div class="bar-val">87</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Classe virtuelle</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:80%;background:#D8FF7C;"></div></div>
+          <div class="bar-val">80</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-name">Qualité des échanges</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:90%;background:#4D61F4;"></div></div>
+          <div class="bar-val">90</div>
+        </div>
+      </div>
+      <div class="session-verbatims">
+        <div class="sv">Elle s'est adaptée à nos différents niveaux, très réactive et a répondu à nos différentes attentes et interrogations.</div>
+        <div class="sv">Consultante compétente et qui a répondu à la plupart de nos questions même si notre activité est différente de ses clients habituels.</div>
+        <div class="sv">Très à l'écoute et explications claires. Varié et dynamique — surtout pour du distanciel.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERBATIMS CLÉS EN GRAND -->
+<section style="background:#0A3E27;padding:80px 48px;">
+  <div class="max-w">
+    <span class="eyebrow eyebrow-lime">Ce qu'ils retiennent</span>
+    <h2 style="color:#fff;margin-bottom:48px;">Les verbatims qui reviennent</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="card-dark reveal" style="padding:32px 28px;">
+        <div style="font-size:2.5rem;color:#D8FF7C;line-height:1;margin-bottom:16px;">"</div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:20px;font-style:italic;">Connaît parfaitement le sujet et sait s'adapter en fonction de nos besoins.</p>
+        <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.78rem;color:#D8FF7C;">UCPA Sport Vacances</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);">100/100 expertise · Mars 2026</div>
+      </div>
+      <div class="card-dark reveal" style="padding:32px 28px;background:#4D61F4;">
+        <div style="font-size:2.5rem;color:#D8FF7C;line-height:1;margin-bottom:16px;">"</div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.9);line-height:1.8;margin-bottom:20px;font-style:italic;">Elle s'est adaptée à nos différents niveaux, très réactive et a répondu à nos différentes attentes.</p>
+        <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.78rem;color:#D8FF7C;">CMAR IDF · Chambre de Métiers</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);">10 répondants · Juin 2026</div>
+      </div>
+      <div class="card-dark reveal" style="padding:32px 28px;">
+        <div style="font-size:2.5rem;color:#D8FF7C;line-height:1;margin-bottom:16px;">"</div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:20px;font-style:italic;">Connaissance du sujet impressionnante. Beaucoup d'activités pratiques.</p>
+        <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.78rem;color:#D8FF7C;">Enorise SAS</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);">100/100 expertise · Mars 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="max-w">
+    <span class="eyebrow cta-eyebrow" style="display:block;margin-bottom:10px;">Votre équipe, la prochaine ?</span>
+    <h2>Des formations qui font<br>vraiment bouger les choses. 🎯</h2>
+    <p>Un audit de besoin gratuit. Un programme calibré sur vos équipes et vos outils. Un devis sous 48h.</p>
+    <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Demander un devis ☎️</a>
+    <p class="cta-detail">Ou : <a href="mailto:solen@fuzzy-formation.fr" style="color:rgba(255,255,255,0.5);text-decoration:underline;">solen@fuzzy-formation.fr</a> · Réponse sous 24h</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">FUZZY 🚀</a>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <span class="footer-col-title">Formations</span>
+        <a href="formations.html">📋 Toutes les formations</a>
+        <a href="sensibilisation-ia.html">🌱 Sensibilisation</a>
+        <a href="formation-metier-ia.html">🎯 Formation métier</a>
+        <a href="bootcamp-ia-equipe.html">🚀 Bootcamp équipe</a>
+        <a href="adoption-ia-suivi.html">📈 Adoption + suivi</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Fuzzy</span>
+        <a href="resultats.html" style="color:#D8FF7C!important;">⭐ Résultats</a>
+        <a href="diagnostic-ia-pme.html">🔍 Diagnostic IA</a>
+        <a href="financement-opco.html">💰 Financement OPCO</a>
+        <a href="solen-ouahioune.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Légal</span>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <a href="cgv.html">CGV / CGU</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fuzzy Formation · solen@fuzzy-formation.fr</span>
+    <span>Formatrice agréée NDA · Financement OPCO via Cegos, Ilev Campus, Oreegami</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown').forEach(function(el){
+  var menu=el.querySelector('.dropdown-menu');if(!menu)return;var t;
+  el.addEventListener('mouseenter',function(){clearTimeout(t);menu.classList.add('open');});
+  el.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  menu.addEventListener('mouseenter',function(){clearTimeout(t);});
+  menu.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  document.addEventListener('click',function(e){if(!el.contains(e.target))menu.classList.remove('open');});
+});
+document.querySelectorAll('.reveal').forEach(function(el){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});obs.observe(el);
+});
+</script>
+</body>
+</html>
