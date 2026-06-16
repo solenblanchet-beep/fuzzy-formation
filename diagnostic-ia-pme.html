@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<title>Diagnostic IA 360° PME — Cartographie, quick wins & plan de formation | Fuzzy Formation</title>
+<meta name="description" content="Diagnostic IA 360° pour PME et TPE. Demi-journée sur site. Cartographie des usages, risques, quick wins, charte IA interne, plan de formation par métier. 1490€.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fuzzy-formation.fr/diagnostic-ia-pme.html">
+<meta property="og:title" content="Diagnostic IA 360° PME — Fuzzy Formation">
+<meta property="og:description" content="Demi-journée sur site. Cartographie des usages IA, identification des risques, quick wins actionnables, charte IA et plan de formation. 1490€.">
+<meta property="og:image" content="https://fuzzy-formation.fr/Solen_Ouahioune_Formatrice.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Diagnostic IA 360° PME","description":"Diagnostic complet de maturité IA pour PME et TPE. Cartographie des usages, risques, quick wins, charte IA interne, plan de formation par métier.","provider":{"@type":"Organization","name":"Fuzzy Formation","url":"https://fuzzy-formation.fr"},"offers":{"@type":"Offer","price":"1490","priceCurrency":"EUR"},"areaServed":"France"}
+</script>
+<style>
+/* HERO SPÉCIFIQUE */
+.diag-hero {
+  background: #0A3E27;
+  padding: 100px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.diag-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(77,97,244,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.diag-hero-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.diag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(216,255,124,0.12);
+  border: 1px solid rgba(216,255,124,0.25);
+  color: #D8FF7C;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.diag-hero h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  color: #fff;
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+.diag-hero h1 em { color: #D8FF7C; font-style: normal; }
+.diag-hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+/* PRIX CARD */
+.price-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+}
+.price-card-label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(216,255,124,0.6);
+  margin-bottom: 12px;
+  display: block;
+}
+.price-amount {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  color: #D8FF7C;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.price-ht { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 24px; }
+.price-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.price-include-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+}
+.price-include-item::before {
+  content: '✓';
+  color: #D8FF7C;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.price-sep {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+.price-detail {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+}
+
+/* LIVRABLES VISUELS */
+.livrables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.livrable-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 22px;
+  border-top: 4px solid #D8FF7C;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.livrable-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+.livrable-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: #CC88FF;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.livrable-icon { font-size: 2rem; display: block; margin-bottom: 12px; }
+.livrable-card h3 { font-size: 0.95rem; margin-bottom: 8px; }
+.livrable-card p { font-size: 0.85rem; color: #4A4A4A; line-height: 1.65; }
+
+/* DÉROULÉ TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #D8FF7C, #4D61F4);
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 0;
+  position: relative;
+}
+.timeline-dot {
+  width: 56px;
+  height: 56px;
+  background: #0A3E27;
+  border: 3px solid #D8FF7C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #D8FF7C;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.timeline-content { padding-top: 8px; }
+.timeline-time {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #CC88FF;
+  margin-bottom: 6px;
+}
+.timeline-content h3 { font-size: 1rem; margin-bottom: 6px; }
+.timeline-content p { font-size: 0.88rem; color: #4A4A4A; line-height: 1.7; }
+.timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+/* POUR QUI */
+.pourqui-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.pourqui-card {
+  background: #0A3E27;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+.pourqui-card h3 { color: #D8FF7C; font-size: 0.95rem; margin-bottom: 6px; }
+.pourqui-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+.pourqui-role {
+  display: inline-block;
+  background: rgba(216,255,124,0.1);
+  border: 1px solid rgba(216,255,124,0.2);
+  color: rgba(216,255,124,0.8);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .diag-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .diag-hero { padding: 72px 20px 56px; }
+  .livrables-grid { grid-template-columns: 1fr; }
+  .pourqui-grid { grid-template-columns: 1fr; }
+  .timeline::before { left: 23px; }
+  .timeline-dot { width: 48px; height: 48px; }
+  .timeline-item { grid-template-columns: 48px 1fr; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">FUZZY 🚀</a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="index.html#programmes" class="nav-dropdown-toggle">Formations ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="claude.html">🤖 Maîtriser Claude</a></li>
+        <li><a href="creer-son-site.html">🌐 Crée ton site avec Claude</a></li>
+        <li><a href="ia-entreprise.html">🏢 IA en Entreprise</a></li>
+        <li><a href="ia-equipes-commerciales.html">📊 IA pour commerciaux</a></li>
+        <li><a href="ia-rh.html">👥 IA pour RH</a></li>
+        <li><a href="ia-dirigeants-pme.html">🎯 IA pour dirigeants</a></li>
+        <li><a href="ia-ecoles.html">🎓 IA pour écoles</a></li>
+        <li><a href="notion.html">📋 Notion Business</a></li>
+        <li><a href="nocode.html">⚡ No-Code & Automatisation</a></li>
+      </ul>
+    </li>
+    <li><a href="diagnostic-ia-pme.html" style="color:#D8FF7C!important;font-weight:700!important;">Diagnostic IA</a></li>
+    <li><a href="financement-opco.html">Financement</a></li>
+    <li><a href="solen-ouahioune.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">PRENEZ UN RDV ☎️</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ia-entreprise.html">🏢 IA en Entreprise</a>
+  <a href="ia-equipes-commerciales.html">📊 IA pour commerciaux</a>
+  <a href="ia-rh.html">👥 IA pour RH</a>
+  <a href="ia-dirigeants-pme.html">🎯 IA pour dirigeants</a>
+  <a href="ia-ecoles.html">🎓 IA pour écoles</a>
+  <a href="diagnostic-ia-pme.html" style="font-weight:800;color:#0A3E27;">🔍 Diagnostic IA 360°</a>
+  <a href="financement-opco.html">💰 Financement OPCO</a>
+  <a href="solen-ouahioune.html">À propos</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="mobile-cta">PRENEZ UN RDV ☎️</a>
+</div>
+
+<!-- HERO -->
+<section class="diag-hero">
+  <div class="diag-hero-inner">
+    <div>
+      <div class="diag-badge">🔍 Offre conseil · Demi-journée sur site</div>
+      <h1>Diagnostic <em>IA 360°</em><br>pour votre PME</h1>
+      <p class="diag-hero-sub">Avant de former, il faut savoir où vous en êtes — et où aller. En une demi-journée sur site, vous avez une cartographie complète de vos usages IA actuels, vos risques, vos quick wins et un plan de formation par métier prêt à exécuter.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;">
+        <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:8px 16px;border-radius:100px;font-size:0.82rem;color:rgba(255,255,255,0.75);">🕐 Demi-journée sur site</span>
+        <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:8px 16px;border-radius:100px;font-size:0.82rem;color:rgba(255,255,255,0.75);">🏢 TPE / PME 2 à 80 pers.</span>
+        <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:8px 16px;border-radius:100px;font-size:0.82rem;color:rgba(255,255,255,0.75);">📦 5 livrables inclus</span>
+        <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:8px 16px;border-radius:100px;font-size:0.82rem;color:rgba(255,255,255,0.75);">📍 France entière</span>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Demander un diagnostic ☎️</a>
+        <a href="#livrables" class="btn-outline">Voir les livrables ↓</a>
+      </div>
+    </div>
+
+    <!-- PRICE CARD -->
+    <div class="price-card">
+      <span class="price-card-label">Diagnostic IA 360° PME</span>
+      <div class="price-amount">1490€</div>
+      <div class="price-ht">HT · Paiement à 30 jours</div>
+      <div class="price-includes">
+        <div class="price-include-item">Demi-journée sur site (3h30)</div>
+        <div class="price-include-item">Cartographie des usages IA par département</div>
+        <div class="price-include-item">Identification des risques & angles morts</div>
+        <div class="price-include-item">3 quick wins actionnables sous 30 jours</div>
+        <div class="price-include-item">Charte IA interne prête à déployer</div>
+        <div class="price-include-item">Plan de formation par métier</div>
+      </div>
+      <div class="price-sep"></div>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary" style="width:100%;justify-content:center;">Réserver mon diagnostic →</a>
+      <div class="price-detail" style="margin-top:14px;">Réponse sous 24h · Devis officiel sous 48h<br>Financement possible via OPCO partenaires</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP KPI -->
+<div style="background:#4D61F4;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.1);">
+  <div style="text-align:center;padding:28px 20px;border-right:1px solid rgba(255,255,255,0.1);">
+    <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:2.2rem;color:#D8FF7C;line-height:1;margin-bottom:8px;">3h30</div>
+    <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);">sur site, sans<br>perturber vos équipes</div>
+  </div>
+  <div style="text-align:center;padding:28px 20px;border-right:1px solid rgba(255,255,255,0.1);">
+    <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:2.2rem;color:#D8FF7C;line-height:1;margin-bottom:8px;">5</div>
+    <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);">livrables remis<br>sous 5 jours ouvrés</div>
+  </div>
+  <div style="text-align:center;padding:28px 20px;border-right:1px solid rgba(255,255,255,0.1);">
+    <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:2.2rem;color:#D8FF7C;line-height:1;margin-bottom:8px;">30j</div>
+    <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);">pour implémenter<br>les quick wins</div>
+  </div>
+  <div style="text-align:center;padding:28px 20px;">
+    <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:2.2rem;color:#D8FF7C;line-height:1;margin-bottom:8px;">100%</div>
+    <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);">sur mesure selon<br>votre secteur</div>
+  </div>
+</div>
+
+<!-- POURQUOI AVANT DE FORMER -->
+<section class="section-fond section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Le constat</span>
+    <h2>Former sans diagnostiquer,<br>c'est brûler du budget.</h2>
+    <p class="section-intro">La plupart des déploiements IA en entreprise échouent non pas par manque de technologie — mais par manque de méthode. On forme tout le monde à la même chose, sans savoir ce dont chaque département a vraiment besoin.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="card reveal" style="border-left:4px solid #CC4444;">
+        <span style="font-size:1.8rem;display:block;margin-bottom:12px;">🎲</span>
+        <h3>Sans diagnostic</h3>
+        <p style="font-size:0.88rem;color:#4A4A4A;line-height:1.7;">Formation générique pour tout le monde. Les commerciaux apprennent les mêmes choses que les RH. Personne ne sait quoi faire au retour.</p>
+      </div>
+      <div class="card reveal" style="border-left:4px solid #CC4444;">
+        <span style="font-size:1.8rem;display:block;margin-bottom:12px;">⚠️</span>
+        <h3>Risques non identifiés</h3>
+        <p style="font-size:0.88rem;color:#4A4A4A;line-height:1.7;">Vos équipes utilisent déjà des outils IA — souvent sans que vous le sachiez. Des données confidentielles circulent. La charte est absente.</p>
+      </div>
+      <div class="card reveal" style="border-left:4px solid #CC4444;">
+        <span style="font-size:1.8rem;display:block;margin-bottom:12px;">💸</span>
+        <h3>Budget mal alloué</h3>
+        <p style="font-size:0.88rem;color:#4A4A4A;line-height:1.7;">On investit là où ça fait plaisir, pas là où ça crée de la valeur. Certains départements sont sur-formés. D'autres n'ont pas accès aux outils qui les doubleraient.</p>
+      </div>
+    </div>
+    <!-- SOLUTION -->
+    <div style="background:#0A3E27;border-radius:12px;padding:36px 32px;margin-top:20px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;" class="reveal">
+      <div>
+        <h3 style="color:#D8FF7C;margin-bottom:10px;">Le Diagnostic IA 360° règle tout ça en une demi-journée.</h3>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.75;">Avant de former, vous savez exactement où sont les usages existants, où sont les risques, quelles sont les 3 actions à lancer immédiatement — et quel plan de formation par métier mettre en place.</p>
+      </div>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary" style="flex-shrink:0;white-space:nowrap;">Demander un diagnostic →</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRABLES -->
+<section class="section-blanc section-pad" id="livrables">
+  <div class="max-w">
+    <span class="eyebrow">Ce que vous recevez</span>
+    <h2 style="margin-bottom:16px;">5 livrables actionnables<br>remis sous 5 jours ouvrés 📦</h2>
+    <p class="section-intro">Pas un rapport de 80 pages que personne ne lit. Des documents courts, visuels, directement utilisables par votre équipe direction et vos managers.</p>
+    <div class="livrables-grid">
+      <div class="livrable-card reveal">
+        <div class="livrable-num">Livrable 01</div>
+        <span class="livrable-icon">🗺️</span>
+        <h3>Cartographie des usages IA</h3>
+        <p>Vue d'ensemble de tous les usages IA actuels dans votre structure — officiels et non officiels. Par département, par outil, par niveau de maîtrise. Ce que vous utilisez, ce que vous ratez, ce qui est risqué.</p>
+      </div>
+      <div class="livrable-card reveal">
+        <div class="livrable-num">Livrable 02</div>
+        <span class="livrable-icon">⚠️</span>
+        <h3>Rapport risques & angles morts</h3>
+        <p>Identification des zones de risque : données confidentielles exposées, usages non conformes RGPD, hallucinations non détectées, dépendance à un seul outil. Avec niveau de criticité et recommandations.</p>
+      </div>
+      <div class="livrable-card reveal">
+        <div class="livrable-num">Livrable 03</div>
+        <span class="livrable-icon">⚡</span>
+        <h3>3 quick wins sous 30 jours</h3>
+        <p>Les 3 actions à lancer immédiatement pour un ROI visible rapidement. Sélectionnées selon votre secteur, vos équipes et vos priorités business. Chaque quick win est détaillé : outil, méthode, responsable, indicateur.</p>
+      </div>
+      <div class="livrable-card reveal">
+        <div class="livrable-num">Livrable 04</div>
+        <span class="livrable-icon">📋</span>
+        <h3>Charte IA interne</h3>
+        <p>Document de gouvernance prêt à déployer : ce qui est autorisé, ce qui est interdit, les règles de confidentialité, le processus de validation des nouveaux outils. Rédigée dans le langage de votre entreprise.</p>
+      </div>
+      <div class="livrable-card reveal">
+        <div class="livrable-num">Livrable 05</div>
+        <span class="livrable-icon">🎓</span>
+        <h3>Plan de formation par métier</h3>
+        <p>Programme de formation sur mesure pour chaque département : commercial, RH, marketing, opérations, direction. Objectifs, durée, format, priorité et budget estimé. Prêt à soumettre à votre OPCO.</p>
+      </div>
+      <div style="background:#4D61F4;border-radius:12px;padding:28px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;" class="reveal">
+        <span style="font-size:2rem;display:block;margin-bottom:12px;">🎁</span>
+        <h3 style="color:#D8FF7C;margin-bottom:8px;">Bonus</h3>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);line-height:1.65;">Appel de restitution de 45 min avec le dirigeant et/ou DRH pour présenter les résultats, répondre aux questions et valider les priorités.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉROULÉ -->
+<section class="section-fond section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Le déroulé</span>
+    <h2 style="margin-bottom:16px;">Une demi-journée structurée,<br>sans perturber vos équipes</h2>
+    <p class="section-intro">3h30 sur site. Entretiens courts avec les référents de chaque département. Pas de réunion plénière, pas de bilan collectif. Vous continuez à travailler normalement.</p>
+    <div style="max-width:720px;margin:0 auto;">
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">9h</div>
+          <div class="timeline-content">
+            <div class="timeline-time">30 min · Dirigeant ou DRH</div>
+            <h3>Cadrage stratégique</h3>
+            <p>Objectifs business, contexte de l'entreprise, enjeux prioritaires, organisation interne. C'est le fil directeur de tout le diagnostic.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">9h30</div>
+          <div class="timeline-content">
+            <div class="timeline-time">15 min par département · Responsables</div>
+            <h3>Interviews métier</h3>
+            <p>Entretiens courts et structurés avec les référents de chaque département. Usages actuels, outils utilisés, frictions, besoins non couverts. 15 minutes par pôle suffisent.</p>
+            <div class="timeline-tags">
+              <span class="tag">Commercial</span>
+              <span class="tag">RH</span>
+              <span class="tag">Marketing</span>
+              <span class="tag">Opérations</span>
+              <span class="tag">Direction</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">11h</div>
+          <div class="timeline-content">
+            <div class="timeline-time">30 min · Observation terrain</div>
+            <h3>Observation des outils en place</h3>
+            <p>Tour rapide des outils utilisés au quotidien. Quels logiciels, quelles intégrations IA, quels usages non déclarés. Ce qu'on voit souvent surprend les dirigeants.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">11h30</div>
+          <div class="timeline-content">
+            <div class="timeline-time">30 min · Dirigeant ou DRH</div>
+            <h3>Restitution à chaud</h3>
+            <p>Premières conclusions, risques identifiés, premières recommandations. On valide ensemble les priorités avant que je parte construire les livrables.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">J+5</div>
+          <div class="timeline-content">
+            <div class="timeline-time">Remise des livrables + appel 45 min</div>
+            <h3>Les 5 livrables + présentation</h3>
+            <p>Cartographie, rapport risques, quick wins, charte IA, plan de formation. Remis en format PDF et document éditable. Suivi de l'appel de restitution pour répondre à toutes vos questions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section style="background:#0A3E27;padding:80px 48px;">
+  <div class="max-w">
+    <span class="eyebrow eyebrow-lime">Cibles</span>
+    <h2 style="color:#fff;margin-bottom:40px;">Pour qui c'est fait ?</h2>
+    <div class="pourqui-grid">
+      <div class="pourqui-card reveal">
+        <div class="pourqui-role">Dirigeant·e PME</div>
+        <h3>Vous voulez déployer l'IA — mais pas n'importe comment</h3>
+        <p>Vous avez entendu parler de l'IA partout et vous voulez agir. Mais vous ne savez pas par où commencer, ce qui est vraiment utile dans votre secteur, et comment embarquer vos équipes sans tout bouleverser.</p>
+      </div>
+      <div class="pourqui-card reveal">
+        <div class="pourqui-role">DRH / Responsable formation</div>
+        <h3>Vous devez structurer un plan de formation IA</h3>
+        <p>Votre direction vous demande de former les équipes à l'IA. Mais à quoi exactement ? Pour qui en priorité ? Avec quel budget ? Le diagnostic vous donne les réponses pour construire un dossier OPCO solide.</p>
+      </div>
+      <div class="pourqui-card reveal">
+        <div class="pourqui-role">Direction commerciale</div>
+        <h3>Vos concurrents utilisent l'IA — vous ne voulez pas prendre de retard</h3>
+        <p>Vous sentez que vos équipes pourraient aller plus vite avec les bons outils. Mais vous ne voulez pas lancer une initiative qui ne tient pas dans la durée. Le diagnostic identifie ce qui crée vraiment de la valeur.</p>
+      </div>
+      <div class="pourqui-card reveal">
+        <div class="pourqui-role">DAF / Direction générale</div>
+        <h3>Vous voulez un ROI clair avant d'investir</h3>
+        <p>Avant d'approuver un budget formation IA, vous voulez savoir exactement ce que ça va changer, comment le mesurer et quelle est la priorité. Le diagnostic vous donne les chiffres pour décider.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-fond section-pad">
+  <div class="max-w-sm">
+    <span class="eyebrow">FAQ</span>
+    <h2 style="margin-bottom:40px;">Questions fréquentes</h2>
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      <details class="faq-item"><summary>Le diagnostic est-il déductible du budget formation si on commande ensuite ?</summary><div>Oui. Si vous engagez des formations Fuzzy Formation dans les 3 mois suivant le diagnostic, le montant du diagnostic est déduit de la première facture de formation. C'est un investissement, pas un coût supplémentaire.</div></details>
+      <details class="faq-item"><summary>Faut-il préparer quoi que ce soit avant la demi-journée ?</summary><div>Non. Je vous envoie un questionnaire de 10 minutes à remplir en amont (organigramme, outils utilisés, nombre de collaborateurs par département). C'est tout ce dont j'ai besoin pour préparer les interviews.</div></details>
+      <details class="faq-item"><summary>Combien de personnes faut-il mobiliser le jour J ?</summary><div>Idéalement : le dirigeant ou DRH pour le cadrage et la restitution (1h au total), et 15 minutes pour un référent par département. Pour une PME de 20 personnes, ça représente environ 3 à 5 personnes mobilisées sur des créneaux très courts.</div></details>
+      <details class="faq-item"><summary>Le diagnostic est-il confidentiel ?</summary><div>Absolument. Les informations recueillies lors des interviews et les livrables sont strictement confidentiels. Un accord de confidentialité peut être signé avant la demi-journée si vous le souhaitez.</div></details>
+      <details class="faq-item"><summary>Est-ce finançable via l'OPCO ?</summary><div>Le diagnostic en tant que prestation de conseil n'est pas finançable OPCO. En revanche, le plan de formation qui en découle l'est — via nos organismes partenaires Qualiopi. <a href="financement-opco.html" style="color:#4D61F4;">Voir la page financement</a>.</div></details>
+      <details class="faq-item"><summary>Intervenez-vous partout en France ?</summary><div>Oui, France entière. Les frais de déplacement (au-delà de 50km de Vaux-sur-Seine) sont facturés en sus au réel. Le format distanciel est aussi disponible si vous préférez.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="max-w">
+    <span class="eyebrow cta-eyebrow" style="display:block;margin-bottom:10px;">Première étape avant de former</span>
+    <h2>Savoir avant d'agir.<br>C'est ça, le Diagnostic IA 360°. 🔍</h2>
+    <p>30 minutes d'échange gratuit pour valider que le diagnostic est adapté à votre situation. Devis officiel sous 48h.</p>
+    <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Demander mon diagnostic — 1490€ →</a>
+    <p class="cta-detail">Questions ? <a href="mailto:solen@fuzzy-formation.fr" style="color:rgba(255,255,255,0.5);text-decoration:underline;">solen@fuzzy-formation.fr</a> · Réponse sous 24h</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">FUZZY 🚀</a>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <span class="footer-col-title">Formations</span>
+        <a href="ia-entreprise.html">🏢 IA en Entreprise</a>
+        <a href="ia-equipes-commerciales.html">📊 Commerciaux</a>
+        <a href="ia-rh.html">👥 Ressources Humaines</a>
+        <a href="ia-dirigeants-pme.html">🎯 Dirigeants PME</a>
+        <a href="ia-ecoles.html">🎓 Écoles</a>
+        <a href="claude.html">🤖 Maîtriser Claude</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Conseil</span>
+        <a href="diagnostic-ia-pme.html" style="color:#D8FF7C!important;">🔍 Diagnostic IA 360°</a>
+        <a href="financement-opco.html">💰 Financement OPCO</a>
+        <a href="conferenciere.html">🎤 Conférences</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Fuzzy</span>
+        <a href="solen-ouahioune.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9">Prendre un RDV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fuzzy Formation · solen@fuzzy-formation.fr</span>
+    <span>Formatrice agréée NDA · Financement OPCO possible via Cegos, Ilev Campus, Oreegami</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown').forEach(function(el){
+  var menu=el.querySelector('.dropdown-menu');if(!menu)return;var t;
+  el.addEventListener('mouseenter',function(){clearTimeout(t);menu.classList.add('open');});
+  el.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  menu.addEventListener('mouseenter',function(){clearTimeout(t);});
+  menu.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  document.addEventListener('click',function(e){if(!el.contains(e.target))menu.classList.remove('open');});
+});
+document.querySelectorAll('.reveal').forEach(function(el){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});obs.observe(el);
+});
+</script>
+</body>
+</html>
