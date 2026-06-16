@@ -546,3 +546,71 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
   h1 { font-size: clamp(2rem, 4.5vw, 3.2rem) !important; }
 }
 /* Responsive update - 2026-04-18 09:41 */
+
+/* ── BANDEAU COOKIES ── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: #0A3E27;
+  border-top: 2px solid #D8FF7C;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.cookie-banner.visible { transform: translateY(0); }
+.cookie-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  max-width: 680px;
+}
+.cookie-text a {
+  color: #D8FF7C;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cookie-text a:hover { opacity: 0.8; }
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.cookie-btn-accept {
+  background: #D8FF7C;
+  color: #0A3E27;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.cookie-btn-accept:hover { background: #C8F060; transform: translateY(-1px); }
+.cookie-btn-refuse {
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cookie-btn-refuse:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.8); }
+@media (max-width: 768px) {
+  .cookie-banner { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
+  .cookie-actions { width: 100%; }
+  .cookie-btn-accept, .cookie-btn-refuse { flex: 1; text-align: center; }
+}

@@ -601,5 +601,16 @@ document.querySelectorAll('.reveal').forEach(function(el){
   var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});obs.observe(el);
 });
 </script>
+
+<!-- BANDEAU COOKIES -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Gestion des cookies" aria-live="polite">
+  <p class="cookie-text">
+    Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement. Aucun cookie publicitaire ni de traçage tiers. En continuant votre navigation, vous acceptez leur utilisation. <a href="politique-confidentialite.html">En savoir plus</a>
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn-accept" onclick="acceptCookies()">Accepter</button>
+    <button class="cookie-btn-refuse" onclick="refuseCookies()">Continuer sans accepter</button>
+  </div>
+</div>
 </body>
 </html>
