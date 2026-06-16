@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<title>Nos formations IA — Gamme complète | Fuzzy Formation</title>
+<meta name="description" content="Toutes les formations IA Fuzzy Formation : sensibilisation 3h, formation métier 1 jour, bootcamp 3 jours, accompagnement 30 jours. De 490€ à 2990€. OPCO possible.">
+<link rel="canonical" href="https://fuzzy-formation.fr/formations.html">
+<style>
+/* HERO */
+.gamme-hero {
+  background: #0A3E27;
+  padding: 100px 48px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.gamme-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(77,97,244,0.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+.gamme-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+.gamme-hero h1 { color: #fff; margin-bottom: 20px; }
+.gamme-hero h1 em { color: #D8FF7C; font-style: normal; }
+.gamme-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.8; max-width: 580px; margin: 0 auto 36px; }
+
+/* FILTRE NAV */
+.gamme-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 32px 48px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: sticky;
+  top: 68px;
+  z-index: 90;
+}
+.filter-btn {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 2px solid rgba(0,0,0,0.1);
+  background: transparent;
+  color: #4A4A4A;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: #0A3E27;
+  color: #D8FF7C;
+  border-color: #0A3E27;
+}
+
+/* GAMME CARDS */
+.gamme-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 48px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.gamme-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 36px;
+  display: grid;
+  grid-template-columns: 280px 1fr auto;
+  gap: 48px;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.gamme-card:hover {
+  border-color: #D8FF7C;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+}
+.gamme-card.featured {
+  background: #0A3E27;
+  border-color: #0A3E27;
+}
+.gamme-card.featured:hover {
+  border-color: #D8FF7C;
+}
+
+/* BADGE POPULAIRE */
+.popular-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: #D8FF7C;
+  color: #0A3E27;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+/* LEFT : meta */
+.gamme-meta {}
+.gamme-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #CC88FF;
+  margin-bottom: 8px;
+}
+.gamme-card.featured .gamme-num { color: rgba(216,255,124,0.6); }
+.gamme-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #0A3E27;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.gamme-card.featured .gamme-title { color: #D8FF7C; }
+.gamme-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.gamme-pill {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #F6F5F1;
+  color: #4A4A4A;
+}
+.gamme-card.featured .gamme-pill {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.65);
+}
+
+/* MIDDLE : description */
+.gamme-desc {}
+.gamme-tagline {
+  font-size: 0.95rem;
+  color: #4A4A4A;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.gamme-card.featured .gamme-tagline { color: rgba(255,255,255,0.65); }
+.gamme-points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gamme-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #4A4A4A;
+}
+.gamme-point::before {
+  content: '→';
+  color: #CC88FF;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.gamme-card.featured .gamme-point { color: rgba(255,255,255,0.6); }
+.gamme-card.featured .gamme-point::before { color: #D8FF7C; }
+
+/* RIGHT : prix + CTA */
+.gamme-action { text-align: center; min-width: 160px; }
+.gamme-price {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #0A3E27;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.gamme-card.featured .gamme-price { color: #D8FF7C; }
+.gamme-price-detail {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.gamme-card.featured .gamme-price-detail { color: rgba(255,255,255,0.35); }
+.gamme-cta {
+  display: block;
+  background: #D8FF7C;
+  color: #0A3E27;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  margin-bottom: 8px;
+}
+.gamme-cta:hover { background: #C8F060; transform: translateY(-1px); }
+.gamme-link {
+  display: block;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4D61F4;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.gamme-card.featured .gamme-link { color: rgba(216,255,124,0.7); }
+.gamme-link:hover { opacity: 0.7; }
+
+/* SEPARATEUR DIAGNOSTIC -->
+.gamme-sep {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+.gamme-sep::before, .gamme-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+
+/* DIAGNOSTIC + CONFERENCE CARDS */
+.addon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 48px 48px;
+}
+.addon-card {
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  border: 2px solid rgba(0,0,0,0.06);
+  transition: border-color 0.2s;
+}
+.addon-card:hover { border-color: #D8FF7C; }
+.addon-card.blue { background: #4D61F4; border-color: #4D61F4; }
+
+/* TABLEAU COMPARATIF */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.compare-table th {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #888;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+.compare-table td {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: #4A4A4A;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  vertical-align: middle;
+}
+.compare-table tr:hover td { background: rgba(216,255,124,0.05); }
+.compare-table .td-name {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #0A3E27;
+}
+.compare-table .td-price {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0A3E27;
+}
+.compare-check { color: #2A6B2A; font-weight: 700; }
+.compare-dash { color: #ccc; }
+
+@media (max-width: 900px) {
+  .gamme-card { grid-template-columns: 1fr; gap: 24px; }
+  .gamme-action { text-align: left; }
+  .gamme-filter { top: 60px; padding: 16px 20px; }
+  .gamme-grid { padding: 32px 20px; }
+  .addon-grid { grid-template-columns: 1fr; padding: 0 20px 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">FUZZY 🚀</a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="formations.html" class="nav-dropdown-toggle" style="color:#D8FF7C!important;font-weight:700!important;">Formations ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="formations.html" class="current">📋 Toutes les formations</a></li>
+        <li><a href="sensibilisation-ia.html">🌱 Sensibilisation IA · 3h</a></li>
+        <li><a href="formation-metier-ia.html">🎯 Formation métier · 1 jour</a></li>
+        <li><a href="bootcamp-ia-equipe.html">🚀 Bootcamp IA équipe · 3 jours</a></li>
+        <li><a href="adoption-ia-suivi.html">📈 Adoption IA + suivi · 30 jours</a></li>
+        <li style="border-top:1px solid rgba(0,0,0,0.06);margin-top:4px;padding-top:4px;"><a href="ia-equipes-commerciales.html">📊 IA pour commerciaux</a></li>
+        <li><a href="ia-rh.html">👥 IA pour RH</a></li>
+        <li><a href="ia-dirigeants-pme.html">🎯 IA pour dirigeants</a></li>
+        <li><a href="ia-ecoles.html">🎓 IA pour écoles</a></li>
+        <li><a href="claude.html">🤖 Maîtriser Claude</a></li>
+      </ul>
+    </li>
+    <li><a href="diagnostic-ia-pme.html">Diagnostic IA</a></li>
+    <li><a href="financement-opco.html">Financement</a></li>
+    <li><a href="solen-ouahioune.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">PRENEZ UN RDV ☎️</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formations.html" style="font-weight:800;">📋 Toutes les formations</a>
+  <a href="sensibilisation-ia.html">🌱 Sensibilisation IA · 3h · 490€</a>
+  <a href="formation-metier-ia.html">🎯 Formation métier · 1j · 1190€</a>
+  <a href="bootcamp-ia-equipe.html">🚀 Bootcamp · 3j · 2990€</a>
+  <a href="adoption-ia-suivi.html">📈 Adoption + suivi · 30j · 1990€</a>
+  <a href="diagnostic-ia-pme.html">🔍 Diagnostic IA 360° · 1490€</a>
+  <a href="financement-opco.html">💰 Financement OPCO</a>
+  <a href="solen-ouahioune.html">À propos</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="mobile-cta">PRENEZ UN RDV ☎️</a>
+</div>
+
+<!-- HERO -->
+<section class="gamme-hero">
+  <div class="gamme-hero-inner">
+    <span class="eyebrow eyebrow-lime" style="display:block;margin-bottom:12px;">Gamme formations</span>
+    <h1>Toutes nos formations <em>IA</em><br>en un coup d'œil</h1>
+    <p>De la sensibilisation de 3h au déploiement accompagné sur 30 jours. Chaque format répond à un stade de maturité différent. Choisissez selon votre contexte — ou commencez par un diagnostic.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Prendre un RDV ☎️</a>
+      <a href="diagnostic-ia-pme.html" class="btn-outline">Commencer par un diagnostic →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FILTRE -->
+<div class="gamme-filter">
+  <a href="#decouverte" class="filter-btn">🌱 Découverte</a>
+  <a href="#metier" class="filter-btn">🎯 Métier</a>
+  <a href="#equipe" class="filter-btn">🚀 Équipe</a>
+  <a href="#accompagnement" class="filter-btn">📈 Accompagnement</a>
+  <a href="#evenement" class="filter-btn">🎤 Événement</a>
+  <a href="#diagnostic" class="filter-btn">🔍 Diagnostic</a>
+</div>
+
+<!-- GAMME -->
+<div style="background:#F6F5F1;padding-top:3px;">
+<div class="gamme-grid">
+
+  <!-- 01 SENSIBILISATION -->
+  <div id="decouverte" class="gamme-card reveal">
+    <div class="gamme-meta">
+      <div class="gamme-num">01 · Découverte</div>
+      <div class="gamme-title">Sensibilisation IA</div>
+      <div class="gamme-pills">
+        <span class="gamme-pill">🕐 3 heures</span>
+        <span class="gamme-pill">👥 Jusqu'à 20 pers.</span>
+        <span class="gamme-pill">📍 Présentiel & visio</span>
+      </div>
+    </div>
+    <div class="gamme-desc">
+      <p class="gamme-tagline">Le premier pas. Pour créer une culture commune de l'IA dans votre structure — et lever les freins avant de former.</p>
+      <div class="gamme-points">
+        <div class="gamme-point">Ce qu'est l'IA générative — et ce qu'elle n'est pas</div>
+        <div class="gamme-point">Les cas d'usage concrets dans votre secteur</div>
+        <div class="gamme-point">Les risques à connaître avant de se lancer</div>
+        <div class="gamme-point">Les 3 réflexes à adopter immédiatement</div>
+      </div>
+    </div>
+    <div class="gamme-action">
+      <div class="gamme-price">490€</div>
+      <div class="gamme-price-detail">HT · Par session<br>OPCO possible</div>
+      <a href="sensibilisation-ia.html" class="gamme-cta">En savoir plus →</a>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="gamme-link">Demander un devis</a>
+    </div>
+  </div>
+
+  <!-- 02 FORMATION MÉTIER -->
+  <div id="metier" class="gamme-card reveal">
+    <div class="gamme-meta">
+      <div class="gamme-num">02 · Métier</div>
+      <div class="gamme-title">Formation métier IA</div>
+      <div class="gamme-pills">
+        <span class="gamme-pill">🕐 1 jour</span>
+        <span class="gamme-pill">👥 Jusqu'à 12 pers.</span>
+        <span class="gamme-pill">📍 Présentiel & visio</span>
+      </div>
+    </div>
+    <div class="gamme-desc">
+      <p class="gamme-tagline">Une journée calibrée sur votre département. Commerciaux, RH, marketing, opérations — chaque formation est construite sur vos cas d'usage réels.</p>
+      <div class="gamme-points">
+        <div class="gamme-point">Programme 100% adapté au métier cible</div>
+        <div class="gamme-point">Kit de prompts sectoriels inclus</div>
+        <div class="gamme-point">Exercices sur vos vrais documents</div>
+        <div class="gamme-point">Chaque participant repart avec des outils opérationnels</div>
+      </div>
+    </div>
+    <div class="gamme-action">
+      <div class="gamme-price">1190€</div>
+      <div class="gamme-price-detail">HT · Par session<br>OPCO possible</div>
+      <a href="formation-metier-ia.html" class="gamme-cta">En savoir plus →</a>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="gamme-link">Demander un devis</a>
+    </div>
+  </div>
+
+  <!-- 03 BOOTCAMP -->
+  <div id="equipe" class="gamme-card featured reveal">
+    <div class="popular-badge">Le plus complet</div>
+    <div class="gamme-meta">
+      <div class="gamme-num">03 · Équipe</div>
+      <div class="gamme-title">Bootcamp IA équipe</div>
+      <div class="gamme-pills">
+        <span class="gamme-pill">🕐 3 jours</span>
+        <span class="gamme-pill">👥 Équipe complète</span>
+        <span class="gamme-pill">📍 Présentiel</span>
+      </div>
+    </div>
+    <div class="gamme-desc">
+      <p class="gamme-tagline">Transformation en profondeur. En 3 jours intensifs, votre équipe passe de zéro à opérationnelle sur l'IA. Méthode, pratique, outils et adoption — tout d'un coup.</p>
+      <div class="gamme-points">
+        <div class="gamme-point">Jour 1 : fondamentaux + culture IA de l'équipe</div>
+        <div class="gamme-point">Jour 2 : cas d'usage métier + construction des workflows</div>
+        <div class="gamme-point">Jour 3 : automatisations + charte + plan d'adoption</div>
+        <div class="gamme-point">Livrables : kit prompts + charte IA + plan 30j</div>
+      </div>
+    </div>
+    <div class="gamme-action">
+      <div class="gamme-price">2990€</div>
+      <div class="gamme-price-detail">HT · Par session<br>OPCO possible</div>
+      <a href="bootcamp-ia-equipe.html" class="gamme-cta">En savoir plus →</a>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="gamme-link">Demander un devis</a>
+    </div>
+  </div>
+
+  <!-- 04 ADOPTION -->
+  <div id="accompagnement" class="gamme-card reveal">
+    <div class="gamme-meta">
+      <div class="gamme-num">04 · Accompagnement</div>
+      <div class="gamme-title">Adoption IA + suivi</div>
+      <div class="gamme-pills">
+        <span class="gamme-pill">📅 30 jours</span>
+        <span class="gamme-pill">👥 Toute la structure</span>
+        <span class="gamme-pill">🔄 Récurrent</span>
+      </div>
+    </div>
+    <div class="gamme-desc">
+      <p class="gamme-tagline">La formation ne suffit pas — c'est l'adoption qui crée la valeur. Ce programme accompagne votre organisation sur 30 jours pour ancrer les pratiques dans la durée.</p>
+      <div class="gamme-points">
+        <div class="gamme-point">2 sessions de suivi collectives par mois</div>
+        <div class="gamme-point">Accès direct pour questions individuelles (async)</div>
+        <div class="gamme-point">Mesure des indicateurs d'adoption chaque semaine</div>
+        <div class="gamme-point">Ajustements du plan de déploiement en temps réel</div>
+      </div>
+    </div>
+    <div class="gamme-action">
+      <div class="gamme-price">1990€</div>
+      <div class="gamme-price-detail">HT · /mois<br>Sans engagement</div>
+      <a href="adoption-ia-suivi.html" class="gamme-cta">En savoir plus →</a>
+      <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="gamme-link">Demander un devis</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- SÉPARATEUR -->
+<div style="max-width:1140px;margin:0 auto;padding:0 48px;">
+  <div class="gamme-sep">Offres complémentaires</div>
+</div>
+
+<!-- ADD-ONS -->
+<div class="addon-grid" id="diagnostic">
+
+  <!-- DIAGNOSTIC -->
+  <div class="addon-card reveal" id="evenement" style="background:#fff;">
+    <div>
+      <span style="font-family:'Quicksand',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#CC88FF;display:block;margin-bottom:8px;">🔍 Avant de former</span>
+      <h3 style="margin-bottom:8px;">Diagnostic IA 360° PME</h3>
+      <p style="font-size:0.88rem;color:#4A4A4A;line-height:1.65;margin-bottom:14px;">Demi-journée sur site. Cartographie des usages, risques, quick wins, charte IA et plan de formation par métier. Le préalable idéal à toute formation.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span class="tag">🕐 Demi-journée</span>
+        <span class="tag">📦 5 livrables</span>
+        <span class="tag">Déductible des formations</span>
+      </div>
+    </div>
+    <div style="text-align:center;min-width:140px;">
+      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:2rem;color:#0A3E27;line-height:1;margin-bottom:4px;">1490€</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:16px;">HT</div>
+      <a href="diagnostic-ia-pme.html" class="btn-dark" style="font-size:0.82rem;padding:10px 18px;white-space:nowrap;">Voir le détail →</a>
+    </div>
+  </div>
+
+  <!-- CONFÉRENCE -->
+  <div class="addon-card blue reveal">
+    <div>
+      <span style="font-family:'Quicksand',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(216,255,124,0.6);display:block;margin-bottom:8px;">🎤 Format événement</span>
+      <h3 style="color:#D8FF7C;margin-bottom:8px;">Conférence + atelier</h3>
+      <p style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:14px;">Keynote inspirante + atelier pratique. Format idéal pour les séminaires, conventions d'équipe, événements RH. De 50 à 1000 personnes.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-family:'Quicksand',sans-serif;font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;">🎤 Keynote 45-60 min</span>
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-family:'Quicksand',sans-serif;font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;">🛠️ Atelier 2h-3h30</span>
+      </div>
+    </div>
+    <div style="text-align:center;min-width:140px;">
+      <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:1.4rem;color:#D8FF7C;line-height:1;margin-bottom:4px;">Sur devis</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.35);margin-bottom:16px;">Selon format & audience</div>
+      <a href="conferenciere.html" class="btn-primary" style="font-size:0.82rem;padding:10px 18px;white-space:nowrap;">Voir les thèmes →</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- TABLEAU COMPARATIF -->
+<section class="section-blanc section-pad">
+  <div class="max-w">
+    <span class="eyebrow">Comparatif</span>
+    <h2 style="margin-bottom:40px;">Quelle formation pour quel besoin ?</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Formation</th>
+            <th>Durée</th>
+            <th>Prix HT</th>
+            <th>Kit prompts</th>
+            <th>Sur mesure</th>
+            <th>OPCO</th>
+            <th>Suivi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="td-name">🌱 Sensibilisation IA</span></td>
+            <td>3h</td>
+            <td><span class="td-price">490€</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-dash">—</span></td>
+          </tr>
+          <tr>
+            <td><span class="td-name">🎯 Formation métier</span></td>
+            <td>1 jour</td>
+            <td><span class="td-price">1190€</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-dash">—</span></td>
+          </tr>
+          <tr style="background:rgba(216,255,124,0.05);">
+            <td><span class="td-name">🚀 Bootcamp IA équipe</span> <span style="background:#D8FF7C;color:#0A3E27;font-family:'Quicksand',sans-serif;font-weight:700;font-size:0.65rem;padding:2px 8px;border-radius:100px;margin-left:8px;">Complet</span></td>
+            <td>3 jours</td>
+            <td><span class="td-price">2990€</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">Partiel</span></td>
+          </tr>
+          <tr>
+            <td><span class="td-name">📈 Adoption IA + suivi</span></td>
+            <td>30 jours</td>
+            <td><span class="td-price">1990€/mois</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-check">✓✓</span></td>
+          </tr>
+          <tr style="background:#F6F5F1;">
+            <td><span class="td-name">🔍 Diagnostic IA 360°</span></td>
+            <td>Demi-journée</td>
+            <td><span class="td-price">1490€</span></td>
+            <td><span class="compare-dash">—</span></td>
+            <td><span class="compare-check">✓</span></td>
+            <td><span class="compare-dash">Non</span></td>
+            <td><span class="compare-dash">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="background:#D0EEF9;border-radius:12px;padding:20px 24px;margin-top:20px;display:flex;align-items:flex-start;gap:14px;border-left:4px solid #4D61F4;" class="reveal">
+      <span style="font-size:1.5rem;flex-shrink:0;">💡</span>
+      <p style="font-size:0.9rem;color:#4A4A4A;line-height:1.7;"><strong style="color:#0A3E27;">Parcours recommandé :</strong> Diagnostic IA 360° → Sensibilisation de toute la structure → Formation métier par département → Bootcamp pour les équipes prioritaires → Adoption + suivi pour ancrer dans la durée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCEMENT -->
+<section style="background:#0A3E27;padding:56px 48px;">
+  <div class="max-w" style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
+    <div>
+      <span class="eyebrow eyebrow-lime">Financement</span>
+      <h2 style="color:#fff;margin-bottom:10px;">Toutes les formations sont finançables via OPCO</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.75;">Via nos organismes partenaires certifiés Qualiopi (Cegos, Ilev Campus, Oreegami). Prise en charge partielle ou totale selon votre OPCO et votre enveloppe formation.</p>
+    </div>
+    <a href="financement-opco.html" class="btn-primary" style="flex-shrink:0;white-space:nowrap;">Voir le process →</a>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="max-w">
+    <span class="eyebrow cta-eyebrow" style="display:block;margin-bottom:10px;">Vous ne savez pas par où commencer ?</span>
+    <h2>30 minutes pour choisir<br>la bonne formation. 🎯</h2>
+    <p>On échange sur votre contexte, votre équipe et vos objectifs. Je vous propose le format le plus adapté avec un devis sous 48h.</p>
+    <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="btn-primary">Prendre un RDV gratuit ☎️</a>
+    <p class="cta-detail">Ou écrivez-nous : <a href="mailto:solen@fuzzy-formation.fr" style="color:rgba(255,255,255,0.5);text-decoration:underline;">solen@fuzzy-formation.fr</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">FUZZY 🚀</a>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <span class="footer-col-title">Gamme formations</span>
+        <a href="sensibilisation-ia.html">🌱 Sensibilisation · 490€</a>
+        <a href="formation-metier-ia.html">🎯 Formation métier · 1190€</a>
+        <a href="bootcamp-ia-equipe.html">🚀 Bootcamp · 2990€</a>
+        <a href="adoption-ia-suivi.html">📈 Adoption + suivi · 1990€</a>
+        <a href="diagnostic-ia-pme.html">🔍 Diagnostic · 1490€</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Par métier</span>
+        <a href="ia-equipes-commerciales.html">📊 Commerciaux</a>
+        <a href="ia-rh.html">👥 Ressources Humaines</a>
+        <a href="ia-dirigeants-pme.html">🎯 Dirigeants PME</a>
+        <a href="ia-ecoles.html">🎓 Écoles</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Fuzzy</span>
+        <a href="solen-ouahioune.html">À propos</a>
+        <a href="financement-opco.html">Financement OPCO</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fuzzy Formation · solen@fuzzy-formation.fr</span>
+    <span>Formatrice agréée NDA · Financement OPCO via Cegos, Ilev Campus, Oreegami</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown').forEach(function(el){
+  var menu=el.querySelector('.dropdown-menu');if(!menu)return;var t;
+  el.addEventListener('mouseenter',function(){clearTimeout(t);menu.classList.add('open');});
+  el.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  menu.addEventListener('mouseenter',function(){clearTimeout(t);});
+  menu.addEventListener('mouseleave',function(){t=setTimeout(function(){menu.classList.remove('open');},160);});
+  document.addEventListener('click',function(e){if(!el.contains(e.target))menu.classList.remove('open');});
+});
+document.querySelectorAll('.reveal').forEach(function(el){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});obs.observe(el);
+});
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    var target=document.querySelector(this.getAttribute('href'));
+    if(target){target.scrollIntoView({behavior:'smooth',block:'center'});}
+  });
+});
+</script>
+</body>
+</html>
