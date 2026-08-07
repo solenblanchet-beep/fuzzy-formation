@@ -4,116 +4,101 @@ build_kpis.py — Propage les KPIs Cegos sur tout le site fuzzy-formation.fr
 Usage : python3 build_kpis.py
 À lancer après chaque modification de kpis.json
 """
-
 import json, re, os, glob
-from datetime import date
 
 BASE = os.path.dirname(os.path.abspath(__file__)) + '/'
 
-# ── Charger les KPIs ──────────────────────────────────────────────────────────
 with open(BASE + 'kpis.json') as f:
     K = json.load(f)
 
 C = K['cegos']
-SESSIONS    = C['sessions']
-STAGIAIRES  = C['stagiaires']
-REPONDANTS  = C['repondants']
-EXPERTISE   = C['score_expertise']          # 98.5
-UTILITE     = C['score_utilite_moyen']      # 87.2
-ECHANGES    = C['score_echanges']           # 92.2
-PERIODE     = C['periode']
-MAJ         = K['_mise_a_jour']
+SESSIONS   = C['sessions']
+STAGIAIRES = C['stagiaires']
+REPONDANTS = C['repondants']
+EXPERTISE  = C['score_expertise']
+UTILITE    = C['score_utilite_moyen']
+ECHANGES   = C['score_echanges']
+VARIETE    = C['score_variete']
+OBJECTIFS  = C['score_objectifs']
+PERIODE    = C['periode']
+MAJ        = K['_mise_a_jour']
 
 def fmt(v):
-    """98.5 → '98,5' / 87.2 → '87,2'"""
     return str(v).replace('.', ',')
 
-# ── Substitutions à appliquer sur toutes les pages ──────────────────────────
-# Chaque entrée : (pattern_regex, remplacement)
-# On utilise des patterns assez précis pour ne pas casser le HTML autour
+# Toutes les valeurs connues (passées et présentes) à remplacer
+EXPERTISE_VALS = ['98,2', '98.2', '98,5', '98.5', '98,0', '98.0']
+UTILITE_VALS   = ['84,6', '84.6', '87,2', '87.2', '87,6', '87.6']
+STAGIAIRES_VALS = ['46', '51', '61']
+SESSIONS_VALS   = ['5', '6', '7']
 
-SUBS = [
-    # Stagiaires
-    (r'\b46\b(?=.*stagiaires|.*apprenants)', str(STAGIAIRES)),
-    (r'\b51\b(?=.*stagiaires|.*apprenants)', str(STAGIAIRES)),  # déjà bon, idempotent
-    # Expertise
-    (r'98[,\.]2(?=/100.*[Ee]xpertise|.*[Ee]xpertise.*[Cc]egos)', fmt(EXPERTISE)),
-    (r'98[,\.]5(?=/100.*[Ee]xpertise|.*[Ee]xpertise.*[Cc]egos)', fmt(EXPERTISE)),  # idempotent
-    # Satisfaction / utilité globale
-    (r'84[,\.]6(?=.*satisfaction|.*utilit)', fmt(UTILITE)),
-    (r'87[,\.]2(?=.*satisfaction|.*utilit)', fmt(UTILITE)),  # idempotent
+def fix_html(content):
+    # Expertise /100
+    for v in EXPERTISE_VALS:
+        content = content.replace(f'{v}/100', f'{fmt(EXPERTISE)}/100')
+        content = content.replace(f'>{v}<', f'>{fmt(EXPERTISE)}<')
+    # Satisfaction / utilité
+    for v in UTILITE_VALS:
+        content = content.replace(v, fmt(UTILITE))
+    # Stagiaires (contexte)
+    for v in STAGIAIRES_VALS:
+        content = content.replace(f'{v} stagiaires', f'{STAGIAIRES} stagiaires')
+        content = content.replace(f'{v} apprenants', f'{STAGIAIRES} apprenants')
+        content = content.replace(f'>{v}<\n          <div class="hstat-label">stagiaires',
+                                  f'>{STAGIAIRES}<\n          <div class="hstat-label">stagiaires')
+        content = content.replace(f'>{v}<\n          <div class="score-small-label">Stagiaires',
+                                  f'>{STAGIAIRES}<\n          <div class="score-small-label">Stagiaires')
+        content = content.replace(f'>{v}<\n      <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);">Apprenants',
+                                  f'>{STAGIAIRES}<\n      <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);">Apprenants')
     # Sessions
-    (r'\b5\b(?= sessions| session)', str(SESSIONS)),
-    (r'\b6\b(?= sessions| session)', str(SESSIONS)),  # idempotent
-]
-
-def fix_kpis_in_html(content):
-    """Applique les substitutions de chiffres dans le HTML."""
-    # Stratégie : chercher les occurrences connues avec contexte
-    replacements = [
-        # ── Expertise ──
-        ('98,2/100', f'{fmt(EXPERTISE)}/100'),
-        ('98.2/100', f'{fmt(EXPERTISE)}/100'),
-        ('>98,2<', f'>{fmt(EXPERTISE)}<'),
-        ('>98.2<', f'>{fmt(EXPERTISE)}<'),
-        # ── Satisfaction globale ──
-        ('84,6', fmt(UTILITE)),
-        ('84.6', fmt(UTILITE)),
-        # ── Stagiaires ──
-        ('>46<', f'>{STAGIAIRES}<'),
-        ('46 stagiaires', f'{STAGIAIRES} stagiaires'),
-        ('46 apprenants', f'{STAGIAIRES} apprenants'),
-        # ── Sessions ──
-        ('5 sessions', f'{SESSIONS} sessions'),
-        ('5 session', f'{SESSIONS} session'),
-        ('Moyenne sur 5 sessions', f'Moyenne sur {SESSIONS} sessions'),
-        ('sur 5 sessions', f'sur {SESSIONS} sessions'),
-        # ── Période ──
-        ('Mars → Juin 2026', PERIODE.replace('–', ' → ')),
-        ('Mars-Juin 2026', PERIODE.replace('–', '-')),
-    ]
-    for old, new in replacements:
-        content = content.replace(old, new)
+    for v in SESSIONS_VALS:
+        content = content.replace(f'{v} sessions', f'{SESSIONS} sessions')
+        content = content.replace(f'{v} session', f'{SESSIONS} session')
+        content = content.replace(f'Moyenne sur {v} sessions', f'Moyenne sur {SESSIONS} sessions')
+        content = content.replace(f'>{v}<\n          <div class="hstat-label">sessions',
+                                  f'>{SESSIONS}<\n          <div class="hstat-label">sessions')
+        content = content.replace(f'>{v}<\n          <div class="score-small-label">Sessions',
+                                  f'>{SESSIONS}<\n          <div class="score-small-label">Sessions')
+        content = content.replace(f'>{v}<\n      <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);">Sessions',
+                                  f'>{SESSIONS}<\n      <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);">Sessions')
+    # Période
+    content = content.replace('Mars–Juin 2026', PERIODE)
+    content = content.replace('Mars → Juin 2026', PERIODE.replace('–', ' → '))
+    content = content.replace('Mars-Juin 2026', PERIODE.replace('–', '-'))
+    # Répondants dans footer stats
+    content = content.replace('51 stagiaires · Mars', f'{STAGIAIRES} stagiaires · Mars')
+    content = content.replace('46 stagiaires · Mars', f'{STAGIAIRES} stagiaires · Mars')
     return content
 
-def fix_meta_description(content, fname):
-    """Met à jour les meta description avec les bons chiffres."""
-    # Pattern meta description
-    def repl_meta(m):
-        desc = m.group(1)
-        desc = desc.replace('98,2', fmt(EXPERTISE)).replace('98.2', fmt(EXPERTISE))
-        desc = desc.replace('84,6', fmt(UTILITE)).replace('84.6', fmt(UTILITE))
-        desc = desc.replace('46 stagiaires', f'{STAGIAIRES} stagiaires')
-        desc = desc.replace('46 apprenants', f'{STAGIAIRES} apprenants')
-        return f'<meta name="description" content="{desc}">'
-    content = re.sub(r'<meta name="description" content="([^"]*)">', repl_meta, content)
-    return content
+def fix_meta(content):
+    def repl(m):
+        d = m.group(1)
+        for v in EXPERTISE_VALS:
+            d = d.replace(v, fmt(EXPERTISE))
+        for v in UTILITE_VALS:
+            d = d.replace(v, fmt(UTILITE))
+        for v in STAGIAIRES_VALS:
+            d = d.replace(f'{v} stagiaires', f'{STAGIAIRES} stagiaires')
+            d = d.replace(f'{v} apprenants', f'{STAGIAIRES} apprenants')
+        return f'<meta name="description" content="{d}">'
+    return re.sub(r'<meta name="description" content="([^"]*)">', repl, content)
 
-# ── Appliquer sur tous les fichiers HTML ─────────────────────────────────────
-html_files = sorted(glob.glob(BASE + '*.html'))
-count_changed = 0
-
-for filepath in html_files:
-    fname = os.path.basename(filepath)
-    with open(filepath, 'r') as f:
-        original = f.read()
-
-    updated = fix_kpis_in_html(original)
-    updated = fix_meta_description(updated, fname)
-
-    if updated != original:
-        with open(filepath, 'w') as f:
+count = 0
+for fp in sorted(glob.glob(BASE + '*.html')):
+    with open(fp) as f:
+        orig = f.read()
+    updated = fix_meta(fix_html(orig))
+    if updated != orig:
+        with open(fp, 'w') as f:
             f.write(updated)
-        count_changed += 1
-        print(f"  ✓ {fname}")
+        count += 1
+        print(f"  ✓ {os.path.basename(fp)}")
 
-print(f"\n{count_changed} fichier(s) mis à jour")
-print(f"\nKPIs propagés :")
-print(f"  Sessions    : {SESSIONS}")
-print(f"  Stagiaires  : {STAGIAIRES}")
-print(f"  Répondants  : {REPONDANTS}")
-print(f"  Expertise   : {fmt(EXPERTISE)}/100")
-print(f"  Utilité moy.: {fmt(UTILITE)}/100")
-print(f"  Échanges    : {fmt(ECHANGES)}/100")
-print(f"  Période     : {PERIODE}")
-print(f"  MAJ         : {MAJ}")
+print(f"\n{count} fichier(s) mis à jour")
+print(f"\nKPIs actifs :")
+print(f"  Sessions   : {SESSIONS} ({PERIODE})")
+print(f"  Stagiaires : {STAGIAIRES} · Répondants : {REPONDANTS}")
+print(f"  Expertise  : {fmt(EXPERTISE)}/100")
+print(f"  Utilité    : {fmt(UTILITE)}/100")
+print(f"  Échanges   : {fmt(ECHANGES)}/100")
+print(f"  Mise à jour: {MAJ}")

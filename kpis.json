@@ -1,33 +1,34 @@
 {
   "_comment": "SOURCE UNIQUE — modifier ce fichier puis lancer : python3 build_kpis.py",
-  "_mise_a_jour": "2026-07-18",
+  "_mise_a_jour": "2026-08-07",
   "_definitions": {
     "sessions": "Nombre de sessions Cegos ayant fait l'objet d'une évaluation officielle",
     "stagiaires": "Nombre total de stagiaires inscrits sur l'ensemble des sessions évaluées",
     "repondants": "Nombre total de répondants aux évaluations Cegos",
-    "score_utilite_moyen": "Moyenne des scores d'utilité globale par session (somme des moyennes / nombre de sessions)",
+    "score_utilite_moyen": "Moyenne des scores d'utilité globale par session",
     "score_expertise": "Moyenne des scores 'Expertise sur le sujet' par session",
     "score_echanges": "Moyenne des scores 'Qualité des échanges' par session",
     "score_variete": "Moyenne des scores 'Variété des activités' par session",
     "score_objectifs": "Moyenne des scores 'Prise en compte des objectifs' par session"
   },
   "cegos": {
-    "sessions": 6,
-    "stagiaires": 51,
-    "repondants": 26,
-    "score_utilite_moyen": 87.2,
-    "score_expertise": 98.5,
-    "score_echanges": 92.2,
-    "score_variete": 87.3,
-    "score_objectifs": 78.7,
+    "sessions": 7,
+    "stagiaires": 61,
+    "repondants": 33,
+    "score_utilite_moyen": 87.6,
+    "score_expertise": 98.0,
+    "score_echanges": 92.6,
+    "score_variete": 87.7,
+    "score_objectifs": 81.7,
     "periode": "Mars–Juin 2026",
     "sessions_detail": [
-      {"client": "UCPA Sport Vacances", "date": "2026-03-12", "type": "INTRA", "stagiaires": 12, "repondants": 4, "score_utilite": 92},
-      {"client": "Enorise SAS",         "date": "2026-03-16", "type": "INTRA", "stagiaires": 8,  "repondants": 3, "score_utilite": 89},
-      {"client": "Paris INTER",          "date": "2026-04-22", "type": "INTER", "stagiaires": 10, "repondants": 6, "score_utilite": 72},
-      {"client": "Paris INTER IA no-code","date": "2026-05-20","type": "INTER", "stagiaires": 4,  "repondants": 2, "score_utilite": 83},
-      {"client": "CMAR IDF",             "date": "2026-06-01", "type": "INTRA", "stagiaires": 12, "repondants": 10,"score_utilite": 87},
-      {"client": "Grid Solutions",        "date": "2026-06-17", "type": "INTRA", "stagiaires": 5,  "repondants": 1, "score_utilite": 100}
+      {"client": "UCPA Sport Vacances",      "date": "2026-03-12", "type": "INTRA", "stagiaires": 12, "repondants": 4,  "score_utilite": 92,  "score_expertise": 100, "score_echanges": 92,  "score_variete": 92,  "score_objectifs": 100},
+      {"client": "Enorise SAS",              "date": "2026-03-16", "type": "INTRA", "stagiaires": 8,  "repondants": 3,  "score_utilite": 89,  "score_expertise": 100, "score_echanges": 78,  "score_variete": 100, "score_objectifs": 78},
+      {"client": "Paris INTER",              "date": "2026-04-22", "type": "INTER", "stagiaires": 10, "repondants": 6,  "score_utilite": 72,  "score_expertise": 94,  "score_echanges": 93,  "score_variete": 78,  "score_objectifs": 67},
+      {"client": "Paris INTER IA no-code",   "date": "2026-05-20", "type": "INTER", "stagiaires": 4,  "repondants": 2,  "score_utilite": 83,  "score_expertise": 100, "score_echanges": 100, "score_variete": 67,  "score_objectifs": 50},
+      {"client": "CMAR IDF",                 "date": "2026-06-01", "type": "INTRA", "stagiaires": 12, "repondants": 10, "score_utilite": 87,  "score_expertise": 97,  "score_echanges": 90,  "score_variete": 87,  "score_objectifs": 77},
+      {"client": "Grid Solutions",           "date": "2026-06-17", "type": "INTRA", "stagiaires": 5,  "repondants": 1,  "score_utilite": 100, "score_expertise": 100, "score_echanges": 100, "score_variete": 100, "score_objectifs": 100},
+      {"client": "Robert Bosch France",      "date": "2026-06-23", "type": "INTRA", "stagiaires": 10, "repondants": 7,  "score_utilite": 90,  "score_expertise": 95,  "score_echanges": 95,  "score_variete": 90,  "score_objectifs": 100}
     ]
   }
 }
