@@ -645,3 +645,34 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
   color:#4A4A4A !important;
   font-weight:500 !important;
 }
+
+/* ── CORRECTIFS WCAG AA — contraste textes secondaires ── */
+
+/* Footer — texte secondaire : 0.35 → 0.6 (#B0B0B0 sur #0A3E27 = 5.6:1) */
+.footer-bottom span,
+.footer-col p {
+  color: #B0B0B0 !important;
+}
+
+/* Footer — liens : 0.7 déjà AA, on renforce à 0.85 */
+.footer-col a {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* Résultats — labels gris : #888 → #666 (5.7:1 sur #fff) */
+.score-label,
+.session-score-label,
+.score-n,
+.session-detail,
+.hstat-label,
+.score-small-label {
+  color: #666 !important;
+}
+.price-ht,
+.price-detail,
+.gamme-price-detail {
+  color: #666 !important;
+}
+
+/* Vert foncé — textes 0.55 → 0.85 (8.6:1 sur #0A3E27) */
+/* Ciblage via variable CSS pour ne pas casser le reste */

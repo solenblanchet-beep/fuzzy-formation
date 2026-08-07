@@ -1,0 +1,28 @@
+# Fuzzy Formation — rewrites URL propres (canonical sans .html)
+
+/formations  /formations.html  200
+/sensibilisation-ia  /sensibilisation-ia.html  200
+/formation-metier-ia  /formation-metier-ia.html  200
+/bootcamp-ia-equipe  /bootcamp-ia-equipe.html  200
+/adoption-ia-suivi  /adoption-ia-suivi.html  200
+/diagnostic-ia-pme  /diagnostic-ia-pme.html  200
+/resultats  /resultats.html  200
+/financement-opco  /financement-opco.html  200
+/solen-ouahioune  /solen-ouahioune.html  200
+/conferenciere  /conferenciere.html  200
+/contact  /contact.html  200
+/ia-equipes-commerciales  /ia-equipes-commerciales.html  200
+/ia-rh  /ia-rh.html  200
+/ia-dirigeants-pme  /ia-dirigeants-pme.html  200
+/ia-ecoles  /ia-ecoles.html  200
+/ia-entreprise  /ia-entreprise.html  200
+/claude  /claude.html  200
+/notion  /notion.html  200
+/nocode  /nocode.html  200
+/creer-son-site  /creer-son-site.html  200
+/mentions-legales  /mentions-legales.html  200
+/politique-confidentialite  /politique-confidentialite.html  200
+/cgv  /cgv.html  200
+
+# Fallback
+/404  /index.html  404
