@@ -26,7 +26,7 @@
         <li><a href="formation-metier-ia.html">Former &mdash; Formation métier · 1 jour</a></li>
         <li><a href="bootcamp-ia-equipe.html">Déployer &mdash; Bootcamp équipe · 3 jours</a></li>
         <li><a href="adoption-ia-suivi.html">Ancrer &mdash; Adoption + suivi · 30 jours</a></li>
-        <li style="border-top:1px solid rgba(0,0,0,0.06);margin-top:4px;padding-top:4px;padding:8px 16px 4px;font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;pointer-events:none;">Par département</li>
+        <li style="border-top:1px solid rgba(0,0,0,0.06);margin-top:4px;padding:8px 16px 4px;font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;pointer-events:none;">Par département</li>
         <li><a href="ia-equipes-commerciales.html">Équipes commerciales</a></li>
         <li><a href="ia-rh.html">Ressources Humaines</a></li>
         <li><a href="ia-dirigeants-pme.html">Dirigeants de PME</a></li>
@@ -41,21 +41,30 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">Prendre un RDV</a></li>
   </ul>
-  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  <button
+    class="nav-burger"
+    id="navBurger"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="mobileMenu"
+    onclick="toggleMenu(this)">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="sensibilisation-ia.html">Découvrir &mdash; Sensibilisation 3h</a>
-  <a href="formation-metier-ia.html">Former &mdash; Formation métier 1 jour</a>
-  <a href="bootcamp-ia-equipe.html">Déployer &mdash; Bootcamp 3 jours</a>
-  <a href="adoption-ia-suivi.html">Ancrer &mdash; Adoption 30 jours</a>
-  <a href="ia-equipes-commerciales.html">Équipes commerciales</a>
-  <a href="ia-rh.html">Ressources Humaines</a>
-  <a href="ia-dirigeants-pme.html">Dirigeants de PME</a>
-  <a href="ia-ecoles.html">Écoles &amp; organismes</a>
-  <a href="formations.html">Tout le catalogue</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu de navigation" aria-modal="false">
+  <a href="formations.html">Toutes les formations</a>
+  <details class="mobile-submenu">
+    <summary>Catalogue par niveau</summary>
+    <a href="sensibilisation-ia.html">Découvrir &mdash; Sensibilisation 3h</a>
+    <a href="formation-metier-ia.html">Former &mdash; Formation métier 1 jour</a>
+    <a href="bootcamp-ia-equipe.html">Déployer &mdash; Bootcamp 3 jours</a>
+    <a href="adoption-ia-suivi.html">Ancrer &mdash; Adoption 30 jours</a>
+    <a href="ia-equipes-commerciales.html">Équipes commerciales</a>
+    <a href="ia-rh.html">Ressources Humaines</a>
+    <a href="ia-dirigeants-pme.html">Dirigeants de PME</a>
+    <a href="ia-ecoles.html">Écoles &amp; organismes</a>
+  </details>
   <a href="diagnostic-ia-pme.html">Diagnostic IA</a>
-  <a href="resultats.html">Résultats &amp; évaluations</a>
-  <a href="financement-opco.html">Financement OPCO</a>
+  <a href="resultats.html">Résultats</a>
+  <a href="financement-opco.html">Financement</a>
   <a href="solen-ouahioune.html">À propos</a>
   <a href="contact.html">Contact</a>
   <a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="mobile-cta">Prendre un RDV</a>
@@ -265,7 +274,39 @@
   </div>
 </footer>
 <script>
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function toggleMenu(btn){
+  var btn = btn || document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  btn.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+  btn.textContent = isOpen ? '✕' : '☰';
+}
+// Fermer sur clic extérieur
+document.addEventListener('click', function(e){
+  var btn = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  if(menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','Ouvrir le menu');
+    btn.textContent = '☰';
+  }
+});
+// Fermer sur Escape
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    var btn = document.getElementById('navBurger');
+    var menu = document.getElementById('mobileMenu');
+    if(menu && menu.classList.contains('open')){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label','Ouvrir le menu');
+      btn.textContent = '☰';
+      btn.focus();
+    }
+  }
+});
 document.querySelectorAll('.nav-dropdown').forEach(function(el){
   var menu=el.querySelector('.dropdown-menu');if(!menu)return;var t;
   el.addEventListener('mouseenter',function(){clearTimeout(t);menu.classList.add('open');});
