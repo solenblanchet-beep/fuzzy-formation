@@ -561,9 +561,14 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
   gap: 24px;
   flex-wrap: wrap;
   transform: translateY(100%);
-  transition: transform 0.4s ease;
+  visibility: hidden;
+  transition: transform 0.4s ease, visibility 0s 0.4s;
 }
-.cookie-banner.visible { transform: translateY(0); }
+.cookie-banner.visible {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform 0.4s ease, visibility 0s 0s;
+}
 .cookie-text {
   font-family: 'EB Garamond', serif;
   font-size: 0.9rem;
@@ -862,13 +867,7 @@ body {
   margin-left: 8px;
 }
 .theme-toggle:hover { background: rgba(255,255,255,0.2); }
-.theme-toggle::after { content: var(--toggle-icon, "🌙"); }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle::after { content: "☀"; }
-}
-[data-theme="dark"] .theme-toggle::after { content: "☀"; }
-[data-theme="light"] .theme-toggle::after { content: "🌙"; }
+/* icon géré par JS — textContent direct */
 
 /* ── MEDIA QUERY NATIVÉ (sans JS) ───────────────────────────── */
 @media (prefers-color-scheme: dark) {
