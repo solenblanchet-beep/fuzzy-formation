@@ -255,6 +255,13 @@
   "areaServed": "France"
 }
 </script>
+<script>/* DARK MODE */
+(function(){
+  var saved = localStorage.getItem('fuzzy_theme');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = saved || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();</script>
 </head>
 <body>
 
@@ -284,6 +291,7 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">Prendre un RDV</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème" title="Mode sombre / clair"></button>
   <button
     class="nav-burger"
     id="navBurger"

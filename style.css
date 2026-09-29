@@ -676,3 +676,215 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
 
 /* Vert foncé — textes 0.55 → 0.85 (8.6:1 sur #0A3E27) */
 /* Ciblage via variable CSS pour ne pas casser le reste */
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE — Fuzzy Formation
+   Activé par : prefers-color-scheme OU [data-theme="dark"]
+   Le toggle JS bascule data-theme sur <html>
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Tokens light (déjà définis — on les renomme en sémantiques) */
+  --bg-page:      #F6F5F1;
+  --bg-card:      #FFFFFF;
+  --bg-card-alt:  #F0EDE8;
+  --text-primary: #0A3E27;
+  --text-body:    #4A4A4A;
+  --text-muted:   #666666;
+  --text-faint:   #999999;
+  --border:       rgba(0,0,0,0.07);
+  --shadow:       rgba(0,0,0,0.07);
+  /* Couleurs de marque — invariantes */
+  --lime:    #D8FF7C;
+  --lime-dk: #C8F060;
+  --sky:     #D0EEF9;
+  --vert:    #0A3E27;
+  --blue:    #4D61F4;
+  --violet:  #CC88FF;
+  /* Toggle icon */
+  --toggle-icon: "🌙";
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-page:      #111612;
+    --bg-card:      #1C221A;
+    --bg-card-alt:  #232B20;
+    --text-primary: #E8F5E0;
+    --text-body:    #B8C8B0;
+    --text-muted:   #8A9E82;
+    --text-faint:   #5A6E54;
+    --border:       rgba(255,255,255,0.07);
+    --shadow:       rgba(0,0,0,0.4);
+    --toggle-icon:  "☀";
+  }
+}
+
+[data-theme="dark"] {
+  --bg-page:      #111612;
+  --bg-card:      #1C221A;
+  --bg-card-alt:  #232B20;
+  --text-primary: #E8F5E0;
+  --text-body:    #B8C8B0;
+  --text-muted:   #8A9E82;
+  --text-faint:   #5A6E54;
+  --border:       rgba(255,255,255,0.07);
+  --shadow:       rgba(0,0,0,0.4);
+  --toggle-icon:  "☀";
+}
+
+[data-theme="light"] {
+  --bg-page:      #F6F5F1;
+  --bg-card:      #FFFFFF;
+  --bg-card-alt:  #F0EDE8;
+  --text-primary: #0A3E27;
+  --text-body:    #4A4A4A;
+  --text-muted:   #666666;
+  --text-faint:   #999999;
+  --border:       rgba(0,0,0,0.07);
+  --shadow:       rgba(0,0,0,0.07);
+  --toggle-icon:  "🌙";
+}
+
+/* ── Application des tokens ─────────────────────────────────── */
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background 0.25s, color 0.25s;
+}
+
+/* Cards blanches */
+.card,
+.card-white {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 2px 16px var(--shadow) !important;
+}
+
+.card h3, .card p { color: var(--text-body) !important; }
+
+/* Section fond clair (#F6F5F1) */
+.section-fond { background: var(--bg-card-alt) !important; }
+.section-blanc { background: var(--bg-card) !important; }
+
+/* Textes body génériques */
+[data-theme="dark"] p:not([style*="color"]),
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) p:not([style*="color"]) {
+    color: var(--text-body);
+  }
+}
+
+/* FAQ items */
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .faq-item summary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+[data-theme="dark"] .faq-item div {
+  background: var(--bg-card-alt);
+  color: var(--text-body);
+}
+
+/* Tags */
+[data-theme="dark"] .tag {
+  background: var(--bg-card-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* Section sky (#D0EEF9) */
+[data-theme="dark"] .section-sky {
+  background: #16222E !important;
+}
+[data-theme="dark"] .section-sky h2,
+[data-theme="dark"] .section-sky .eyebrow { color: var(--text-primary) !important; }
+[data-theme="dark"] .section-sky .section-intro { color: var(--text-body) !important; }
+
+/* Sections blanches sur fond vert foncé ou bleu — invariantes en dark */
+/* (hero, bande bleue, verbatims sur vert) : conservées, elles sont déjà sombres */
+
+/* Dropdown menu */
+[data-theme="dark"] .dropdown-menu {
+  background: #1C221A !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] .dropdown-menu a { color: var(--text-body) !important; }
+[data-theme="dark"] .dropdown-menu a:hover { color: var(--lime) !important; }
+
+/* Mobile menu */
+[data-theme="dark"] .mobile-menu {
+  background: #1C221A !important;
+}
+[data-theme="dark"] .mobile-menu a { color: var(--text-body) !important; border-color: var(--border) !important; }
+
+/* Bandeau partenaires (fond blanc) */
+[data-theme="dark"] .logos-strip,
+[data-theme="dark"] [style*="background:#fff"],
+[data-theme="dark"] [style*="background: #fff"],
+[data-theme="dark"] [style*="background:#FFFFFF"],
+[data-theme="dark"] [style*="background: white"] {
+  background: var(--bg-card) !important;
+}
+
+/* Texte sombre sur fond blanc */
+[data-theme="dark"] .logo-client { color: var(--text-muted) !important; }
+
+/* Inputs contact */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: var(--bg-card-alt) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+/* Cookie banner */
+[data-theme="dark"] .cookie-banner {
+  background: #0D1A0D !important;
+  border-top-color: var(--lime) !important;
+}
+
+/* ── TOGGLE BOUTON ───────────────────────────────────────────── */
+.theme-toggle {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.85);
+  transition: background 0.2s;
+  margin-left: 8px;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.2); }
+.theme-toggle::after { content: var(--toggle-icon, "🌙"); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle::after { content: "☀"; }
+}
+[data-theme="dark"] .theme-toggle::after { content: "☀"; }
+[data-theme="light"] .theme-toggle::after { content: "🌙"; }
+
+/* ── MEDIA QUERY NATIVÉ (sans JS) ───────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body { background: #111612; color: #E8F5E0; }
+  :root:not([data-theme="light"]) .card { background: #1C221A !important; border-color: rgba(255,255,255,0.07) !important; }
+  :root:not([data-theme="light"]) .section-fond { background: #1A201A !important; }
+  :root:not([data-theme="light"]) .section-blanc { background: #1C221A !important; }
+  :root:not([data-theme="light"]) .section-sky { background: #16222E !important; }
+  :root:not([data-theme="light"]) .faq-item { background: #1C221A; border-color: rgba(255,255,255,0.07); }
+  :root:not([data-theme="light"]) .faq-item summary { color: #E8F5E0; }
+  :root:not([data-theme="light"]) .faq-item div { background: #232B20; color: #B8C8B0; }
+  :root:not([data-theme="light"]) .tag { background: #232B20; color: #8A9E82; }
+  :root:not([data-theme="light"]) .dropdown-menu { background: #1C221A !important; border-color: rgba(255,255,255,0.07) !important; }
+  :root:not([data-theme="light"]) .dropdown-menu a { color: #B8C8B0 !important; }
+  :root:not([data-theme="light"]) .mobile-menu { background: #1C221A !important; }
+  :root:not([data-theme="light"]) .mobile-menu a { color: #B8C8B0 !important; }
+  :root:not([data-theme="light"]) input,
+  :root:not([data-theme="light"]) textarea { background: #232B20 !important; color: #E8F5E0 !important; border-color: rgba(255,255,255,0.07) !important; }
+}
