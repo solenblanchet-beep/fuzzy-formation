@@ -51,7 +51,6 @@
     <li><a href="solen-ouahioune.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://calendar.app.google/aqTtYDwFRpDznh4y9" class="nav-cta">Prendre un RDV</a></li>
-    <li><button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème" title="Mode sombre / clair"></button></li>
   </ul>
   <button
     class="nav-burger"
@@ -253,4 +252,6 @@ function refuseCookies(){localStorage.setItem('fuzzy_cookies','refused');hideBan
 function hideBanner(){var b=document.getElementById('cookieBanner');if(b){b.style.transform='translateY(100%)';}}
 (function(){if(!localStorage.getItem('fuzzy_cookies')){setTimeout(function(){var b=document.getElementById('cookieBanner');if(b)b.classList.add('visible');},800);}})();
 </script>
+
+<button class="theme-toggle-fixed" id="themeToggle" aria-label="Basculer le thème" title="Mode sombre / clair">🌙</button>
 </body></html>
