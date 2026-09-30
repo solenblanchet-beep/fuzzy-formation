@@ -923,3 +923,143 @@ body {
   border-color: #D8FF7C;
   color: #D8FF7C;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE — CORRECTIFS LISIBILITÉ
+   ═══════════════════════════════════════════════════════════ */
+
+/* Bandeau partenaires (fond blanc → card dark) */
+[data-theme="dark"] .logos-strip {
+  background: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+[data-theme="dark"] .logos-strip .logo-client,
+[data-theme="dark"] .logos-strip span,
+[data-theme="dark"] .logos-strip div {
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .logo-cegos { color: #8899FF !important; }
+
+/* Section "Pour qui" — sky (#D0EEF9) devient trop sombre */
+[data-theme="dark"] .section-sky {
+  background: #162230 !important;
+}
+
+/* Cards génériques — textes h3, p */
+[data-theme="dark"] .card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] .card h3 { color: #D8F0C8 !important; }
+[data-theme="dark"] .card p  { color: #9DB895 !important; }
+
+/* Section fond clair (#F6F5F1) → dark */
+[data-theme="dark"] .section-fond {
+  background: #161C14 !important;
+}
+
+/* Section blanche → dark */
+[data-theme="dark"] .section-blanc,
+[data-theme="dark"] .section-blanc-pad {
+  background: var(--bg-card) !important;
+}
+
+/* Gamme cards (liens cliquables avec onmouseover inline) */
+[data-theme="dark"] a > div[style*="background:#fff"],
+[data-theme="dark"] div[style*="background:#fff"]:not([class*="hero"]) {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+/* Textes inline sur fond blanc */
+[data-theme="dark"] h3[style*="color:#0A3E27"] { color: #D8F0C8 !important; }
+[data-theme="dark"] p[style*="color:#4A4A4A"]  { color: #9DB895 !important; }
+[data-theme="dark"] p[style*="color:#4a4a4a"]  { color: #9DB895 !important; }
+[data-theme="dark"] span[style*="color:#4A4A4A"]{ color: #9DB895 !important; }
+[data-theme="dark"] span[style*="color:#888"]   { color: #7A9A72 !important; }
+[data-theme="dark"] span[style*="color:#aaa"]   { color: #6A8A64 !important; }
+
+/* Tags */
+[data-theme="dark"] .tag {
+  background: #232B20 !important;
+  color: #9DB895 !important;
+  border: 1px solid #2E3D2A !important;
+}
+
+/* Eyebrow (label uppercase petit) */
+[data-theme="dark"] .eyebrow {
+  color: rgba(216,255,124,0.55) !important;
+}
+
+/* Section intro text */
+[data-theme="dark"] .section-intro { color: #9DB895 !important; }
+
+/* Bandeau partenaires inline (pas class, style direct) */
+[data-theme="dark"] div[style*="background:#fff;padding:28px"],
+[data-theme="dark"] div[style*="background: #fff;padding:28px"],
+[data-theme="dark"] div[style*="background:#fff"][style*="border-bottom"] {
+  background: #1C221A !important;
+}
+
+/* FAQ items */
+[data-theme="dark"] details.faq-item {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] details.faq-item summary {
+  color: #D8F0C8 !important;
+}
+[data-theme="dark"] details.faq-item > div {
+  background: #1A201A !important;
+  color: #9DB895 !important;
+}
+
+/* Footer col texte */
+[data-theme="dark"] .footer-col p { color: #6A8A64 !important; }
+
+/* Toggle bouton */
+[data-theme="dark"] .theme-toggle-fixed {
+  background: #1C221A !important;
+  border-color: #D8FF7C !important;
+  color: #D8FF7C !important;
+}
+
+/* Navbar dropdown en dark */
+[data-theme="dark"] .dropdown-menu {
+  background: #1C221A !important;
+  border: 1px solid #2E3D2A !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] .dropdown-menu a {
+  color: #9DB895 !important;
+}
+[data-theme="dark"] .dropdown-menu a:hover {
+  color: #D8FF7C !important;
+  background: #232B20 !important;
+}
+
+/* Mobile menu */
+[data-theme="dark"] .mobile-menu {
+  background: #1C221A !important;
+}
+[data-theme="dark"] .mobile-menu a {
+  color: #9DB895 !important;
+  border-color: #2E3D2A !important;
+}
+[data-theme="dark"] .mobile-menu .mobile-cta {
+  background: #D8FF7C !important;
+  color: #0A3E27 !important;
+}
+
+/* Inputs */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: #1A201A !important;
+  color: #D8F0C8 !important;
+  border-color: #2E3D2A !important;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #5A7055 !important;
+}

@@ -41,8 +41,7 @@
 <script>/* DARK MODE */
 (function(){
   var saved = localStorage.getItem('fuzzy_theme');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme = saved || (prefersDark ? 'dark' : 'light');
+  var theme = saved || 'light';
   document.documentElement.setAttribute('data-theme', theme);
 })();</script>
 </head><body><nav>
@@ -244,20 +243,19 @@
 </footer><script>
 
 var _themeBtn = document.getElementById('themeToggle');
+function _isDarkMode(){
+  return document.documentElement.getAttribute('data-theme') === 'dark';
+}
 function _updateThemeIcon(){
   if(!_themeBtn) return;
-  var isDark = document.documentElement.getAttribute('data-theme') === 'dark'
-            || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  _themeBtn.textContent = isDark ? '☀' : '🌙';
-  _themeBtn.setAttribute('aria-label', isDark ? 'Passer en mode clair' : 'Passer en mode sombre');
+  var dark = _isDarkMode();
+  _themeBtn.textContent = dark ? '☀' : '🌙';
+  _themeBtn.setAttribute('aria-label', dark ? 'Mode clair' : 'Mode sombre');
 }
 if(_themeBtn){
   _updateThemeIcon();
   _themeBtn.addEventListener('click', function(){
-    var cur = document.documentElement.getAttribute('data-theme');
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var isDark = cur === 'dark' || (!cur && prefersDark);
-    var next = isDark ? 'light' : 'dark';
+    var next = _isDarkMode() ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('fuzzy_theme', next);
     _updateThemeIcon();
