@@ -12,9 +12,9 @@
     "score_objectifs": "Moyenne des scores 'Prise en compte des objectifs' par session"
   },
   "cegos": {
-    "sessions": 13,
-    "stagiaires": 75,
-    "repondants": 46,
+    "sessions": 14,
+    "stagiaires": 76,
+    "repondants": 47,
     "score_utilite_moyen": 91.3,
     "score_expertise": 96.1,
     "score_echanges": 93.1,
@@ -172,6 +172,18 @@
         "client": "INTER-NANTES",
         "date": "2026-09-22",
         "type": "INTER",
+        "stagiaires": 1,
+        "repondants": 1,
+        "score_utilite": 0,
+        "score_expertise": 0,
+        "score_echanges": 0,
+        "score_variete": 0,
+        "score_objectifs": 0
+      },
+      {
+        "client": "2026-09-22_INTER-NANTES",
+        "date": "2026-10-05",
+        "type": "INTRA",
         "stagiaires": 1,
         "repondants": 1,
         "score_utilite": 0,
