@@ -1,0 +1,266 @@
+{
+  "name": "Fuzzy — Cegos PDF → Notion + Site",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [{ "mode": "everyMinute" }]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1NiwXZ2LrydPAuNeutCEJUv4x7m8k8o8P",
+          "mode": "id"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "node-1-gdrive-trigger",
+      "name": "Google Drive — Nouveau PDF",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [240, 320]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "node-2-gdrive-download",
+      "name": "Google Drive — Télécharger PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [460, 320]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "node-3-extract-pdf",
+      "name": "Extraire texte PDF",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [680, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ============================================================\n// PARSER CEGOS — extrait scores + verbatim d'un PDF Cegos\n// ============================================================\n\nconst text = $input.item.json.text || '';\nconst fileName = $('Google Drive — Nouveau PDF').item.json.name || '';\n\n// --- Helpers ---\nfunction extractScore(text, pattern) {\n  const match = text.match(pattern);\n  if (!match) return null;\n  return parseFloat(match[1].replace(',', '.'));\n}\n\nfunction extractText(text, pattern) {\n  const match = text.match(pattern);\n  return match ? match[1].trim() : '';\n}\n\n// --- Nom du client ---\n// Le nom de fichier Cegos suit souvent le pattern Survey-XXXXXX.pdf\n// Le nom de la formation/client est en début de document\nlet clientName = '';\nconst clientPatterns = [\n  /(?:Entreprise|Société|Client|Organisme|Établissement)[\\s:]+([^\\n]+)/i,\n  /^([A-Z][^\\n]{3,50})\\n/m\n];\nfor (const p of clientPatterns) {\n  const m = text.match(p);\n  if (m) { clientName = m[1].trim(); break; }\n}\nif (!clientName) clientName = fileName.replace('.pdf','').replace(/Survey-\\d+/, '').trim() || 'À compléter';\n\n// --- Date ---\nlet sessionDate = '';\nconst dateMatch = text.match(/(\\d{2}[\\/\\-]\\d{2}[\\/\\-]\\d{4})/);\nif (dateMatch) {\n  const parts = dateMatch[1].split(/[\\/\\-]/);\n  if (parts[2].length === 4) {\n    sessionDate = `${parts[2]}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`;\n  }\n}\n\n// --- Scores /100 ---\n// Structure Cegos : critères notés sur 4 → ×25 pour obtenir /100\n// Les critères varient selon le questionnaire ; on cherche par libellé\n\nconst scorePatterns = {\n  utilite:    /(?:Utilité|Utilite|utilité globale|répondu à vos attentes)[^\\d]*(\\d+[,.]?\\d*)/i,\n  expertise:  /(?:Expertise|Compétence|compétences du formateur|expertise)[^\\d]*(\\d+[,.]?\\d*)/i,\n  echanges:   /(?:[Éé]changes|Interactions|échanges entre participants)[^\\d]*(\\d+[,.]?\\d*)/i,\n  variete:    /(?:[Vv]ariété|Diversité|variété des activités)[^\\d]*(\\d+[,.]?\\d*)/i,\n  objectifs:  /(?:objectifs|Objectifs personnels)[^\\d]*(\\d+[,.]?\\d*)/i,\n};\n\n// Cherche aussi le format « X,XX/100 » ou « X/4 »\nconst scores = {};\nfor (const [key, pattern] of Object.entries(scorePatterns)) {\n  let val = extractScore(text, pattern);\n  if (val !== null) {\n    // Si la valeur est sur 4, convertir en /100\n    if (val <= 4) val = Math.round(val * 25);\n    scores[key] = val;\n  } else {\n    scores[key] = null;\n  }\n}\n\n// Score moyen (utilité globale par défaut, ou moyenne des scores non-null)\nconst nonNullScores = Object.values(scores).filter(v => v !== null);\nconst scoreMoyen = nonNullScores.length > 0\n  ? Math.round(nonNullScores.reduce((a,b)=>a+b,0) / nonNullScores.length)\n  : null;\n\n// Utiliser l'utilité si dispo, sinon la moyenne\nconst scoreUtilite = scores.utilite ?? scoreMoyen;\n\n// --- Verbatim ---\nconst verbatimPatterns = [\n  /(?:Points forts|Ce que vous avez aimé|Ce qui vous a aidé)[^\\n]*\\n([\\s\\S]{20,500}?)(?:\\n\\n|Points à améliorer|$)/i,\n  /(?:Commentaires?|Remarques?|Suggestions?)[^\\n]*\\n([\\s\\S]{20,500}?)(?:\\n\\n|$)/i,\n];\nlet verbatim = '';\nfor (const p of verbatimPatterns) {\n  const m = text.match(p);\n  if (m) { verbatim = m[1].trim(); break; }\n}\n\n// --- Stagiaires et répondants ---\n// Approximation : 1 répondant détecté par ce fichier\nconst stagiaires = 1; // sera agrégé dans kpis.json\nconst repondants = 1;\n\n// --- Type (INTRA ou INTER) ---\nconst typeMatch = text.match(/\\b(INTRA|INTER)\\b/i);\nconst sessionType = typeMatch ? typeMatch[1].toUpperCase() : 'INTRA';\n\n// --- Note globale Notion (arrondie sur 5) ---\nlet noteNotion = 'Non noté';\nif (scoreUtilite !== null) {\n  const note = Math.ceil(scoreUtilite / 20); // 100/20 = 5 paliers\n  noteNotion = String(Math.min(5, Math.max(1, note)));\n}\n\n// --- Output ---\nreturn {\n  clientName,\n  sessionDate,\n  sessionType,\n  scores,\n  scoreUtilite,\n  scoreMoyen,\n  verbatim,\n  noteNotion,\n  stagiaires,\n  repondants,\n  fileName,\n  textLength: text.length,\n  rawTextPreview: text.substring(0, 300),\n};"
+      },
+      "id": "node-4-parse-cegos",
+      "name": "Parser scores Cegos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 320]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "value": "15ebbab19ce04e5a8043f577f2144de6",
+          "mode": "id"
+        },
+        "title": "={{ $json.clientName }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Verbatim|rich_text",
+              "textContent": "={{ $json.verbatim }}"
+            },
+            {
+              "key": "Date de l'avis|date",
+              "date": "={{ $json.sessionDate }}"
+            },
+            {
+              "key": "Source|select",
+              "selectValue": "Évaluation CEGOS"
+            },
+            {
+              "key": "Offre / Programme concerné|select",
+              "selectValue": "Fuzzy Formation - CEGOS"
+            },
+            {
+              "key": "Type de client|select",
+              "selectValue": "BtoB Formation (Fuzzy)"
+            },
+            {
+              "key": "Autorisation citation publique|select",
+              "selectValue": "À demander"
+            },
+            {
+              "key": "Note|select",
+              "selectValue": "={{ $json.noteNotion }}"
+            },
+            {
+              "key": "Statut exploitation|select",
+              "selectValue": "À traiter"
+            },
+            {
+              "key": "Secteur d'activité du client|select",
+              "selectValue": "PME / Entreprise"
+            },
+            {
+              "key": "Notes complémentaires|rich_text",
+              "textContent": "=Importé automatiquement depuis {{ $json.fileName }} ({{ $json.sessionType }}) — Scores : Utilité {{ $json.scores.utilite ?? 'n/a' }}/100, Expertise {{ $json.scores.expertise ?? 'n/a' }}/100, Échanges {{ $json.scores.echanges ?? 'n/a' }}/100, Variété {{ $json.scores.variete ?? 'n/a' }}/100, Objectifs {{ $json.scores.objectifs ?? 'n/a' }}/100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-5-notion-create",
+      "name": "Notion — Créer avis client",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [1120, 160]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/solenblanchet-beep/fuzzy-formation/contents/kpis.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "node-6a-github-get",
+      "name": "GitHub — Lire kpis.json",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 480],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-token-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupère kpis.json depuis GitHub (base64) et ajoute la nouvelle session\n\nconst githubResponse = $('GitHub — Lire kpis.json').item.json;\nconst parsed = $('Parser scores Cegos').item.json;\n\n// Décoder le contenu base64\nconst decoded = Buffer.from(githubResponse.content.replace(/\\n/g,''), 'base64').toString('utf-8');\nconst kpis = JSON.parse(decoded);\n\n// Ajouter la nouvelle session dans sessions_detail\nconst newSession = {\n  client: parsed.clientName,\n  date: parsed.sessionDate || new Date().toISOString().split('T')[0],\n  type: parsed.sessionType,\n  stagiaires: 1,\n  repondants: 1,\n  score_utilite:   parsed.scores.utilite   ?? 0,\n  score_expertise: parsed.scores.expertise ?? 0,\n  score_echanges:  parsed.scores.echanges  ?? 0,\n  score_variete:   parsed.scores.variete   ?? 0,\n  score_objectifs: parsed.scores.objectifs ?? 0,\n};\n\nkpis.cegos.sessions_detail.push(newSession);\n\n// Recalculer les agrégats à partir de sessions_detail\nconst all = kpis.cegos.sessions_detail;\nkpis.cegos.sessions    = all.length;\nkpis.cegos.stagiaires  = all.reduce((s, d) => s + (d.stagiaires || 0), 0);\nkpis.cegos.repondants  = all.reduce((s, d) => s + (d.repondants || 0), 0);\n\nconst avg = (field) => {\n  const valid = all.filter(d => d[field] != null && d[field] > 0);\n  if (!valid.length) return 0;\n  return Math.round((valid.reduce((s,d) => s + d[field], 0) / valid.length) * 10) / 10;\n};\n\nkpis.cegos.score_utilite_moyen = avg('score_utilite');\nkpis.cegos.score_expertise     = avg('score_expertise');\nkpis.cegos.score_echanges      = avg('score_echanges');\nkpis.cegos.score_variete       = avg('score_variete');\nkpis.cegos.score_objectifs     = avg('score_objectifs');\n\n// Mise à jour date\nkpis._mise_a_jour = new Date().toISOString().split('T')[0];\n\n// Encoder en base64 pour l'API GitHub\nconst updatedContent = Buffer.from(JSON.stringify(kpis, null, 2) + '\\n').toString('base64');\n\nreturn {\n  updatedKpisJson: JSON.stringify(kpis, null, 2),\n  base64Content: updatedContent,\n  sha: githubResponse.sha,\n  commitMessage: `kpis: +1 session ${parsed.clientName} (${parsed.sessionDate}) — ${kpis.cegos.sessions} sessions au total`,\n};"
+      },
+      "id": "node-6b-update-kpis",
+      "name": "Recalculer kpis.json",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 480]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/solenblanchet-beep/fuzzy-formation/contents/kpis.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.commitMessage }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.base64Content }}"
+            },
+            {
+              "name": "sha",
+              "value": "={{ $json.sha }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "node-6c-github-put",
+      "name": "GitHub — Pousser kpis.json",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 480],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "github-token-cred",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.netlify.com/build_hooks/NETLIFY_HOOK_ID_ICI",
+        "options": {}
+      },
+      "id": "node-7-netlify",
+      "name": "Netlify — Déclencher déploiement",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1780, 480]
+    }
+  ],
+  "connections": {
+    "Google Drive — Nouveau PDF": {
+      "main": [
+        [{ "node": "Google Drive — Télécharger PDF", "type": "main", "index": 0 }]
+      ]
+    },
+    "Google Drive — Télécharger PDF": {
+      "main": [
+        [{ "node": "Extraire texte PDF", "type": "main", "index": 0 }]
+      ]
+    },
+    "Extraire texte PDF": {
+      "main": [
+        [{ "node": "Parser scores Cegos", "type": "main", "index": 0 }]
+      ]
+    },
+    "Parser scores Cegos": {
+      "main": [
+        [
+          { "node": "Notion — Créer avis client",    "type": "main", "index": 0 },
+          { "node": "GitHub — Lire kpis.json",        "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "GitHub — Lire kpis.json": {
+      "main": [
+        [{ "node": "Recalculer kpis.json", "type": "main", "index": 0 }]
+      ]
+    },
+    "Recalculer kpis.json": {
+      "main": [
+        [{ "node": "GitHub — Pousser kpis.json", "type": "main", "index": 0 }]
+      ]
+    },
+    "GitHub — Pousser kpis.json": {
+      "main": [
+        [{ "node": "Netlify — Déclencher déploiement", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "1",
+  "triggerCount": 1,
+  "tags": []
+}
