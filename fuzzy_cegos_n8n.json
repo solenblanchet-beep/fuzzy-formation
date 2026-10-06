@@ -4,7 +4,11 @@
     {
       "parameters": {
         "pollTimes": {
-          "item": [{ "mode": "everyMinute" }]
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
         },
         "triggerOn": "specificFolder",
         "folderToWatch": {
@@ -19,7 +23,10 @@
       "name": "Google Drive — Nouveau PDF",
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [240, 320]
+      "position": [
+        240,
+        320
+      ]
     },
     {
       "parameters": {
@@ -35,7 +42,10 @@
       "name": "Google Drive — Télécharger PDF",
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [460, 320]
+      "position": [
+        460,
+        320
+      ]
     },
     {
       "parameters": {
@@ -46,7 +56,10 @@
       "name": "Extraire texte PDF",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [680, 320]
+      "position": [
+        680,
+        320
+      ]
     },
     {
       "parameters": {
@@ -56,7 +69,10 @@
       "name": "Parser scores Cegos",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [900, 320]
+      "position": [
+        900,
+        320
+      ]
     },
     {
       "parameters": {
@@ -118,7 +134,10 @@
       "name": "Notion — Créer avis client",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2,
-      "position": [1120, 160]
+      "position": [
+        1120,
+        160
+      ]
     },
     {
       "parameters": {
@@ -138,7 +157,10 @@
       "name": "GitHub — Lire kpis.json",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1120, 480],
+      "position": [
+        1120,
+        480
+      ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "github-token-cred",
@@ -154,7 +176,10 @@
       "name": "Recalculer kpis.json",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1340, 480]
+      "position": [
+        1340,
+        480
+      ]
     },
     {
       "parameters": {
@@ -191,7 +216,10 @@
       "name": "GitHub — Pousser kpis.json",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1560, 480],
+      "position": [
+        1560,
+        480
+      ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "github-token-cred",
@@ -209,46 +237,93 @@
       "name": "Netlify — Déclencher déploiement",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1780, 480]
+      "position": [
+        1780,
+        480
+      ]
     }
   ],
   "connections": {
     "Google Drive — Nouveau PDF": {
       "main": [
-        [{ "node": "Google Drive — Télécharger PDF", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Google Drive — Télécharger PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Google Drive — Télécharger PDF": {
       "main": [
-        [{ "node": "Extraire texte PDF", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Extraire texte PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Extraire texte PDF": {
       "main": [
-        [{ "node": "Parser scores Cegos", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Parser scores Cegos",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Parser scores Cegos": {
       "main": [
         [
-          { "node": "Notion — Créer avis client",    "type": "main", "index": 0 },
-          { "node": "GitHub — Lire kpis.json",        "type": "main", "index": 0 }
+          {
+            "node": "Notion — Créer avis client",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GitHub — Lire kpis.json",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "GitHub — Lire kpis.json": {
       "main": [
-        [{ "node": "Recalculer kpis.json", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Recalculer kpis.json",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Recalculer kpis.json": {
       "main": [
-        [{ "node": "GitHub — Pousser kpis.json", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "GitHub — Pousser kpis.json",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "GitHub — Pousser kpis.json": {
       "main": [
-        [{ "node": "Netlify — Déclencher déploiement", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Netlify — Déclencher déploiement",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
