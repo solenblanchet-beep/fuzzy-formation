@@ -27,10 +27,10 @@ def fmt(v):
     return str(v).replace('.', ',')
 
 # Toutes les valeurs connues (passées et présentes) à remplacer
-EXPERTISE_VALS = ['98,2', '98.2', '98,5', '98.5', '98,0', '98.0']
-UTILITE_VALS   = ['84,6', '84.6', '87,2', '87.2', '87,6', '87.6']
-STAGIAIRES_VALS = ['46', '51', '61']
-SESSIONS_VALS   = ['5', '6', '7']
+EXPERTISE_VALS = ['98,2', '98.2', '98,5', '98.5', '98,0', '98.0', '96,1', '96.1']
+UTILITE_VALS   = ['84,6', '84.6', '87,2', '87.2', '87,6', '87.6', '91,3', '91.3']
+STAGIAIRES_VALS = ['46', '51', '61', '72']
+SESSIONS_VALS   = ['5', '6', '7', '10']
 
 def fix_html(content):
     # Expertise /100

@@ -1,6 +1,6 @@
 {
   "_comment": "SOURCE UNIQUE — modifier ce fichier puis lancer : python3 build_kpis.py",
-  "_mise_a_jour": "2026-08-07",
+  "_mise_a_jour": "2026-10-06",
   "_definitions": {
     "sessions": "Nombre de sessions Cegos ayant fait l'objet d'une évaluation officielle",
     "stagiaires": "Nombre total de stagiaires inscrits sur l'ensemble des sessions évaluées",
@@ -12,15 +12,15 @@
     "score_objectifs": "Moyenne des scores 'Prise en compte des objectifs' par session"
   },
   "cegos": {
-    "sessions": 7,
-    "stagiaires": 61,
-    "repondants": 33,
-    "score_utilite_moyen": 87.6,
-    "score_expertise": 98.0,
-    "score_echanges": 92.6,
-    "score_variete": 87.7,
-    "score_objectifs": 81.7,
-    "periode": "Mars–Juin 2026",
+    "sessions": 10,
+    "stagiaires": 72,
+    "repondants": 43,
+    "score_utilite_moyen": 91.3,
+    "score_expertise": 96.1,
+    "score_echanges": 93.1,
+    "score_variete": 89.7,
+    "score_objectifs": 85.6,
+    "periode": "Mars–Sept. 2026",
     "sessions_detail": [
       {"client": "UCPA Sport Vacances",      "date": "2026-03-12", "type": "INTRA", "stagiaires": 12, "repondants": 4,  "score_utilite": 92,  "score_expertise": 100, "score_echanges": 92,  "score_variete": 92,  "score_objectifs": 100},
       {"client": "Enorise SAS",              "date": "2026-03-16", "type": "INTRA", "stagiaires": 8,  "repondants": 3,  "score_utilite": 89,  "score_expertise": 100, "score_echanges": 78,  "score_variete": 100, "score_objectifs": 78},
@@ -28,7 +28,10 @@
       {"client": "Paris INTER IA no-code",   "date": "2026-05-20", "type": "INTER", "stagiaires": 4,  "repondants": 2,  "score_utilite": 83,  "score_expertise": 100, "score_echanges": 100, "score_variete": 67,  "score_objectifs": 50},
       {"client": "CMAR IDF",                 "date": "2026-06-01", "type": "INTRA", "stagiaires": 12, "repondants": 10, "score_utilite": 87,  "score_expertise": 97,  "score_echanges": 90,  "score_variete": 87,  "score_objectifs": 77},
       {"client": "Grid Solutions",           "date": "2026-06-17", "type": "INTRA", "stagiaires": 5,  "repondants": 1,  "score_utilite": 100, "score_expertise": 100, "score_echanges": 100, "score_variete": 100, "score_objectifs": 100},
-      {"client": "Robert Bosch France",      "date": "2026-06-23", "type": "INTRA", "stagiaires": 10, "repondants": 7,  "score_utilite": 90,  "score_expertise": 95,  "score_echanges": 95,  "score_variete": 90,  "score_objectifs": 100}
+      {"client": "Robert Bosch France",      "date": "2026-06-23", "type": "INTRA", "stagiaires": 10, "repondants": 7,  "score_utilite": 90,  "score_expertise": 95,  "score_echanges": 95,  "score_variete": 90,  "score_objectifs": 100},
+      {"client": "INTER Rédiger pour le Web", "date": "2026-09-03", "type": "INTER", "stagiaires": 5,  "repondants": 4,  "score_utilite": 100, "score_expertise": 92,  "score_echanges": 100, "score_variete": 83,  "score_objectifs": 83},
+      {"client": "INTER Lille",               "date": "2026-09-14", "type": "INTER", "stagiaires": 2,  "repondants": 2,  "score_utilite": 100, "score_expertise": 100, "score_echanges": 100, "score_variete": 100, "score_objectifs": 100, "_note": "Autorisation citation publique à demander"},
+      {"client": "INTER Nantes",              "date": "2026-09-22", "type": "INTER", "stagiaires": 4,  "repondants": 4,  "score_utilite": 100, "score_expertise": 83,  "score_echanges": 83,  "score_variete": 100, "score_objectifs": 83,  "_note": "Autorisation citation publique à demander"}
     ]
   }
 }
